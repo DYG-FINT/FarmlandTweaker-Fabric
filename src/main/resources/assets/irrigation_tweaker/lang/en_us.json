@@ -3,5 +3,8 @@
   "text.autoconfig.irrigation_tweaker.option.enable": "Enable",
   "text.autoconfig.irrigation_tweaker.option.rangeXZ": "Range XZ",
   "text.autoconfig.irrigation_tweaker.option.rangeYmin": "Range Y Min",
-  "text.autoconfig.irrigation_tweaker.option.rangeYmax": "Range Y Max"
+  "text.autoconfig.irrigation_tweaker.option.rangeYmax": "Range Y Max",
+  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks": "Extra Hydration Blocks",
+  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks.@Tooltip[0]": "Specify additional blocks that can keep farmland hydrated.",
+  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks.@Tooltip[1]": "For example, ice, lava, or even farmland itself can prevent farmland from drying out when within range."
 }

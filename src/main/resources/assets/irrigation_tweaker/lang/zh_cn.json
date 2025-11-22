@@ -3,5 +3,8 @@
   "text.autoconfig.irrigation_tweaker.option.enable": "启用",
   "text.autoconfig.irrigation_tweaker.option.rangeXZ": "XZ 范围",
   "text.autoconfig.irrigation_tweaker.option.rangeYmin": "最小 Y 范围",
-  "text.autoconfig.irrigation_tweaker.option.rangeYmax": "最大 Y 范围"
+  "text.autoconfig.irrigation_tweaker.option.rangeYmax": "最大 Y 范围",
+  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks": "额外补水来源",
+  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks.@Tooltip[0]": "指定额外能为耕地提供水分的方块。",
+  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks.@Tooltip[1]": "例如冰、熔岩或耕地，只要在范围内，就能阻止耕地变干。"
 }

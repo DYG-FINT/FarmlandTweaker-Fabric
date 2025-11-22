@@ -6,6 +6,9 @@ import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static io.dygfint.irrigation_tweaker.Irrigation_tweaker.isInitConfig;
 
 @Config(name = "irrigation_tweaker")
@@ -32,4 +35,7 @@ public class ModConfig implements ConfigData {
     public int rangeYmin = -1;
     @ConfigEntry.Gui.RequiresRestart
     public int rangeYmax = 0;
+    @ConfigEntry.Gui.RequiresRestart
+    @ConfigEntry.Gui.Tooltip(count = 2)
+    public List<String> extraHydrationBlocks = new ArrayList<>();
 }
