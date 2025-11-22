@@ -1,10 +1,26 @@
 {
-  "text.autoconfig.irrigation_tweaker.title": "耕地调整",
-  "text.autoconfig.irrigation_tweaker.option.enable": "启用",
-  "text.autoconfig.irrigation_tweaker.option.rangeXZ": "XZ 范围",
-  "text.autoconfig.irrigation_tweaker.option.rangeYmin": "最小 Y 范围",
-  "text.autoconfig.irrigation_tweaker.option.rangeYmax": "最大 Y 范围",
-  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks": "额外补水来源",
-  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks.@Tooltip[0]": "指定额外能为耕地提供水分的方块。",
-  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks.@Tooltip[1]": "例如冰、熔岩或耕地，只要在范围内，就能阻止耕地变干。"
+  "text.autoconfig.farmland_tweaker.title": "耕地调整",
+
+  "text.autoconfig.farmland_tweaker.category.irrigationTweaker": "灌溉调整",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.enableIrrigationTweaker": "启用灌溉调整",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.rangeXZ": "XZ 范围",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.rangeYmin": "最小 Y 范围",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.rangeYmax": "最大 Y 范围",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks": "额外补水来源",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks.@Tooltip[0]": "指定额外能为耕地提供水分的方块。",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks.@Tooltip[1]": "例如冰、熔岩或耕地，只要在范围内，就能阻止耕地变干。",
+
+  "text.autoconfig.farmland_tweaker.category.trampleTweaker": "踩踏调整",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.enableTrampleTweaker": "启用踩踏调整",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleFallHeight": "最小踩踏高度",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleFallHeight.@Tooltip[0]": "实体至少需要从多少格高度跌落，才有踩坏耕地的可能性。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleFallHeight.@Tooltip[1]": "越高表示越难踩坏。默认：0.5（与原版一致）",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleFallRange": "概率范围",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleFallRange.@Tooltip[0]": "从最低踩踏高度开始，需要多大的跌落高度差，踩坏耕地的概率才会上升到 100%。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleFallRange.@Tooltip[1]": "越大表示概率增加得越慢。默认：1.0（与原版一致）",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.requireLivingEntityToTrample": "仅生物能踩坏耕地",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowPlayerTrample": "玩家是否能踩坏耕地",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample": "非玩家生物是否能踩坏耕地",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample.@Tooltip": "（此配置项不受“生物破坏”游戏规则所影响。）",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "实体能踩坏耕地所需的最小体积"
 }

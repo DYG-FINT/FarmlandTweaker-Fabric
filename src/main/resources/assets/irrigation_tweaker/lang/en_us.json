@@ -1,10 +1,26 @@
 {
-  "text.autoconfig.irrigation_tweaker.title": "Farmland Tweaker",
-  "text.autoconfig.irrigation_tweaker.option.enable": "Enable",
-  "text.autoconfig.irrigation_tweaker.option.rangeXZ": "Range XZ",
-  "text.autoconfig.irrigation_tweaker.option.rangeYmin": "Range Y Min",
-  "text.autoconfig.irrigation_tweaker.option.rangeYmax": "Range Y Max",
-  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks": "Extra Hydration Blocks",
-  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks.@Tooltip[0]": "Specify additional blocks that can keep farmland hydrated.",
-  "text.autoconfig.irrigation_tweaker.option.extraHydrationBlocks.@Tooltip[1]": "For example, ice, lava, or even farmland itself can prevent farmland from drying out when within range."
+  "text.autoconfig.farmland_tweaker.title": "Farmland Tweaker",
+
+  "text.autoconfig.farmland_tweaker.category.irrigationTweaker": "Irrigation Tweaker",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.enableIrrigationTweaker": "Enable Irrigation Tweaker",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.rangeXZ": "Range XZ",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.rangeYmin": "Range Y Min",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.rangeYmax": "Range Y Max",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks": "Extra Hydration Blocks",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks.@Tooltip[0]": "Specify additional blocks that can keep farmland hydrated.",
+  "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks.@Tooltip[1]": "For example, ice, lava, or even farmland itself can prevent farmland from drying out when within range.",
+
+  "text.autoconfig.farmland_tweaker.category.trampleTweaker": "Trample Tweaker",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.enableTrampleTweaker": "Enable Trample Tweaker",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleFallHeight": "Min Trample Fall Height",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleFallHeight.@Tooltip[0]": "Minimum fall height required for an entity to have a chance to trample farmland.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleFallHeight.@Tooltip[1]": "Higher values make trampling harder. Default: 0.5 (vanilla behavior)",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleFallRange": "Trample Fall Range",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleFallRange.@Tooltip[0]": "The fall distance range over which the trample chance increases from 0% to 100%.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleFallRange.@Tooltip[1]": "Larger values mean the chance grows more slowly. Default: 1.0 (vanilla behavior)",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.requireLivingEntityToTrample": "Require Living Entity To Trample",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowPlayerTrample": "Allow Player Trample",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample": "Allow Mob Trample",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample.@Tooltip": "(This configuration is not governed by the 'mobGriefing' game rule.)",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "Trample Volume Threshold"
 }
