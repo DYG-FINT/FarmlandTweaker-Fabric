@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "irrigation_tweaker",
+  "id": "farmland_tweaker",
   "version": "${version}",
-  "name": "Irrigation Tweaker",
+  "name": "Farmland Tweaker",
   "description": "",
   "authors": ["DYG_FINT"],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/irrigation_tweaker/icon.png",
+  "icon": "assets/farmland_tweaker/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "io.dygfint.irrigation_tweaker.client.Irrigation_tweakerClient"
+      "io.dygfint.farmland_tweaker.client.farmland_tweakerClient"
     ],
     "main": [
-      "io.dygfint.irrigation_tweaker.Irrigation_tweaker"
+      "io.dygfint.farmland_tweaker.farmland_tweaker"
     ],
     "modmenu": [
-      "io.dygfint.irrigation_tweaker.client.ModMenuIntegration"
+      "io.dygfint.farmland_tweaker.client.ModMenuIntegration"
     ]
   },
   "mixins": [
-    "irrigation_tweaker.mixins.json",
+    "farmland_tweaker.mixins.json",
     {
-      "config": "irrigation_tweaker.client.mixins.json",
+      "config": "farmland_tweaker.client.mixins.json",
       "environment": "client"
     }
   ],

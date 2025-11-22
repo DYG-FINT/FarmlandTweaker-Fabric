@@ -1,9 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.dygfint.irrigation_tweaker.mixin.client",
+  "package": "io.dygfint.farmland_tweaker.mixin",
   "compatibilityLevel": "JAVA_21",
-  "client": [
+  "mixins": [
+    "FarmlandBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

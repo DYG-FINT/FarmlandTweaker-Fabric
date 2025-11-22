@@ -1,8 +1,8 @@
-package io.dygfint.irrigation_tweaker.client;
+package io.dygfint.farmland_tweaker.client;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import io.dygfint.irrigation_tweaker.config.ModConfig;
+import io.dygfint.farmland_tweaker.config.ModConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 
 public class ModMenuIntegration implements ModMenuApi {

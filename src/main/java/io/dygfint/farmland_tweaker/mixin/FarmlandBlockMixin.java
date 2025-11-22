@@ -1,6 +1,6 @@
-package io.dygfint.irrigation_tweaker.mixin;
+package io.dygfint.farmland_tweaker.mixin;
 
-import io.dygfint.irrigation_tweaker.config.ModConfig;
+import io.dygfint.farmland_tweaker.config.ModConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.registry.Registries;
@@ -32,7 +32,7 @@ public class FarmlandBlockMixin {
             .collect(Collectors.toSet());
 
     @Inject(method = "isWaterNearby", at = @At("HEAD"), cancellable = true)
-    private static void irrigation_tweaker$onIsNearWater(WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+    private static void farmland_tweaker$onIsNearWater(WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (!config.enable) return;
 
         BlockPos.Mutable m = new BlockPos.Mutable();

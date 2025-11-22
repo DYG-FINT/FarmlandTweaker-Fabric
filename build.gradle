@@ -14,7 +14,7 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        "irrigation_tweaker" {
+        "farmland_tweaker" {
             sourceSet sourceSets.main
             sourceSet sourceSets.client
         }
