@@ -4,7 +4,8 @@
   "package": "io.dygfint.farmland_tweaker.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "FarmlandBlockMixin"
+    "IrrigationTweakerMixin",
+    "TrampleTweakerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
