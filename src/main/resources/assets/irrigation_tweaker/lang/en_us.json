@@ -22,5 +22,24 @@
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowPlayerTrample": "Allow Player Trample",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample": "Allow Mob Trample",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample.@Tooltip": "(This configuration is not governed by the 'mobGriefing' game rule.)",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "Trample Volume Threshold"
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "Trample Volume Threshold",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowTramplingFarmlandUnderCrops": "Allow Trampling Farmland Under Crops",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread": "Farmland Trample Spread",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.enableSpread": "Enable Spread",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.minSpreadFallDistance": "Min Spread Fall Distance",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadFallRange": "Spread Fall Range",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadFallRange.@Tooltip": "Extra fall distance needed to reach max spread radius.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.maxSpreadRadius": "Max Spread Radius",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadRangeMinY": "Spread Range Min Y",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadRangeMaxY": "Spread Range Max Y",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.glideIncreaseSpreadRadius": "Glide Increase Spread Radius",
+
+  "text.autoconfig.farmland_tweaker.category.moistureTweaker": "moisture Tweaker",
+  "text.autoconfig.farmland_tweaker.option.moistureTweaker.enableMoistureTweaker": "Enable Moisture Tweaker",
+  "text.autoconfig.farmland_tweaker.option.moistureTweaker.preventCropFarmlandDryToDirt": "Prevent Crop Farmland Dry To Dirt",
+
+  "text.autoconfig.farmland_tweaker.category.livingTweaker": "Living Tweaker",
+  "text.autoconfig.farmland_tweaker.option.livingTweaker.enableLivingTweaker": "Enable Living Tweaker",
+  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample": "Allow Gliding Collision Trample",
+  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample.@Tooltip": "(This setting is independent from the 'Trample Tweaker' configuration.)"
 }

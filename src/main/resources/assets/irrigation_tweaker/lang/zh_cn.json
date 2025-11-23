@@ -22,5 +22,25 @@
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowPlayerTrample": "玩家是否能踩坏耕地",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample": "非玩家生物是否能踩坏耕地",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample.@Tooltip": "（此配置项不受“生物破坏”游戏规则所影响。）",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "实体能踩坏耕地所需的最小体积"
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "实体能踩坏耕地所需的最小体积",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowTramplingFarmlandUnderCrops": "是否允许踩坏有作物的耕地",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread": "踩坏耕地时触发额外扩散破坏",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.enableSpread": "启用扩散",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.minSpreadFallDistance": "扩散生效需要的最小下落距离",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadFallRange": "乘数范围",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadFallRange.@Tooltip": "从生效需要的最小下落距离开始，需要多大的跌落高度差，才能达到最大扩散半径。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.maxSpreadRadius": "最大扩散半径",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadRangeMinY": "扩散的最小 Y 范围",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadRangeMaxY": "扩散的最大 Y 范围",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.glideIncreaseSpreadRadius": "滑翔增加扩散范围",
+
+
+  "text.autoconfig.farmland_tweaker.category.moistureTweaker": "湿度调整",
+  "text.autoconfig.farmland_tweaker.option.moistureTweaker.enableMoistureTweaker": "启用湿度调整",
+  "text.autoconfig.farmland_tweaker.option.moistureTweaker.preventCropFarmlandDryToDirt": "防止有作物的干燥耕地变为泥土",
+
+  "text.autoconfig.farmland_tweaker.category.livingTweaker": "生物调整",
+  "text.autoconfig.farmland_tweaker.option.livingTweaker.enableLivingTweaker": "启用生物调整",
+  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample": "是否允许滑翔撞击破坏耕地",
+  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample.@Tooltip": "(此配置项不受“踩踏调整”约束。)"
 }

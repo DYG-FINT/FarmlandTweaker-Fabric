@@ -36,6 +36,11 @@ public class IrrigationTweakerMixin {
     private static void farmland_tweaker$modifyIsWaterNearby(WorldView world, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
         if (!CONFIG.irrigationTweaker.enableIrrigationTweaker) return;
 
+        if (EXTRA_BLOCK_IDS.contains(Identifier.of("minecraft","farmland"))) {
+            cir.setReturnValue(true);
+            return;
+        }
+
         BlockPos.Mutable m = new BlockPos.Mutable();
 
         for (int dy = RANGE_Y_MIN; dy <= RANGE_Y_MAX; dy++) {

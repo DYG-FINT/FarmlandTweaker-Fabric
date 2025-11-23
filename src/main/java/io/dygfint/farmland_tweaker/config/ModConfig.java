@@ -28,12 +28,16 @@ public class ModConfig implements ConfigData {
 
     @ConfigEntry.Category("irrigationTweaker")
     @ConfigEntry.Gui.TransitiveObject
-    @ConfigEntry.Gui.RequiresRestart
     public IrrigationTweaker irrigationTweaker = new IrrigationTweaker();
     @ConfigEntry.Category("trampleTweaker")
     @ConfigEntry.Gui.TransitiveObject
-    @ConfigEntry.Gui.RequiresRestart
     public TrampleTweaker trampleTweaker = new TrampleTweaker();
+    @ConfigEntry.Category("moistureTweaker")
+    @ConfigEntry.Gui.TransitiveObject
+    public MoistureTweaker moistureTweaker = new MoistureTweaker();
+    @ConfigEntry.Category("livingTweaker")
+    @ConfigEntry.Gui.TransitiveObject
+    public LivingTweaker livingTweaker = new LivingTweaker();
 
     public static class IrrigationTweaker {
         @ConfigEntry.Gui.RequiresRestart
@@ -41,9 +45,9 @@ public class ModConfig implements ConfigData {
         @ConfigEntry.Gui.RequiresRestart
         public int rangeXZ = 4;
         @ConfigEntry.Gui.RequiresRestart
-        public int rangeYmin = -1;
+        public int rangeYmin = 0;
         @ConfigEntry.Gui.RequiresRestart
-        public int rangeYmax = 0;
+        public int rangeYmax = 1;
         @ConfigEntry.Gui.Tooltip(count = 2)
         @ConfigEntry.Gui.RequiresRestart
         public List<String> extraHydrationBlocks = new ArrayList<>();
@@ -67,5 +71,42 @@ public class ModConfig implements ConfigData {
         public boolean allowMobTrample = true;
         @ConfigEntry.Gui.RequiresRestart
         public double trampleVolumeThreshold = 0.512;
+        @ConfigEntry.Gui.RequiresRestart
+        public boolean allowTramplingFarmlandUnderCrops = true;
+        @ConfigEntry.Gui.CollapsibleObject
+        public FarmlandTrampleSpread farmlandTrampleSpread = new FarmlandTrampleSpread();
+
+        public static class FarmlandTrampleSpread {
+            @ConfigEntry.Gui.RequiresRestart
+            public boolean enableSpread = false;
+            @ConfigEntry.Gui.RequiresRestart
+            public double minSpreadFallDistance = 6.0;
+            @ConfigEntry.Gui.Tooltip()
+            @ConfigEntry.Gui.RequiresRestart
+            public double spreadFallRange = 16.0;
+            @ConfigEntry.Gui.RequiresRestart
+            public int maxSpreadRadius = 2;
+            @ConfigEntry.Gui.RequiresRestart
+            public int spreadRangeMinY = -1;
+            @ConfigEntry.Gui.RequiresRestart
+            public int spreadRangeMaxY = 1;
+            @ConfigEntry.Gui.RequiresRestart
+            public int glideIncreaseSpreadRadius = 2;
+        }
+    }
+
+    public static class MoistureTweaker {
+        @ConfigEntry.Gui.RequiresRestart
+        public boolean enableMoistureTweaker = true;
+        @ConfigEntry.Gui.RequiresRestart
+        public boolean preventCropFarmlandDryToDirt = true;
+    }
+
+    public static class LivingTweaker {
+        @ConfigEntry.Gui.RequiresRestart
+        public boolean enableLivingTweaker = true;
+        @ConfigEntry.Gui.Tooltip()
+        @ConfigEntry.Gui.RequiresRestart
+        public boolean allowGlidingCollisionTrample = false;
     }
 }
