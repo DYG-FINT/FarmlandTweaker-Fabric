@@ -1,4 +1,4 @@
-package io.dygfint.farmland_tweaker.client;
+package me.dygfint.farmland_tweaker.client;
 
 import net.fabricmc.api.ClientModInitializer;
 

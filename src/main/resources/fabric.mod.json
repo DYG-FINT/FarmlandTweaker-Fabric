@@ -11,13 +11,13 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "io.dygfint.farmland_tweaker.client.farmland_tweakerClient"
+      "me.dygfint.farmland_tweaker.client.farmland_tweakerClient"
     ],
     "main": [
-      "io.dygfint.farmland_tweaker.farmland_tweaker"
+      "me.dygfint.farmland_tweaker.farmland_tweaker"
     ],
     "modmenu": [
-      "io.dygfint.farmland_tweaker.client.ModMenuIntegration"
+      "me.dygfint.farmland_tweaker.client.ModMenuIntegration"
     ]
   },
   "mixins": [

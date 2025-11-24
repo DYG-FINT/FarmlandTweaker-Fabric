@@ -1,4 +1,4 @@
-package io.dygfint.farmland_tweaker.config;
+package me.dygfint.farmland_tweaker.config;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
@@ -9,7 +9,7 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.dygfint.farmland_tweaker.farmland_tweaker.isInitConfig;
+import static me.dygfint.farmland_tweaker.farmland_tweaker.isInitConfig;
 
 @Config(name = "farmland_tweaker")
 public class ModConfig implements ConfigData {

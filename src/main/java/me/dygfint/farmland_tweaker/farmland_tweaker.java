@@ -1,4 +1,4 @@
-package io.dygfint.farmland_tweaker;
+package me.dygfint.farmland_tweaker;
 
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;

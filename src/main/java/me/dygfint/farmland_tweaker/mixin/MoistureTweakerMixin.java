@@ -1,6 +1,6 @@
-package io.dygfint.farmland_tweaker.mixin;
+package me.dygfint.farmland_tweaker.mixin;
 
-import io.dygfint.farmland_tweaker.config.ModConfig;
+import me.dygfint.farmland_tweaker.config.ModConfig;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
