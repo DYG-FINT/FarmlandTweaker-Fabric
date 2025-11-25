@@ -83,6 +83,7 @@ public class ModConfig implements ConfigData {
             public DefaultSpreadRadius defaultSpreadRadius = new DefaultSpreadRadius();
             @ConfigEntry.Gui.CollapsibleObject
             public GlideSpreadRadius glideSpreadRadius = new GlideSpreadRadius();
+            @ConfigEntry.Gui.Tooltip()
             @ConfigEntry.Gui.CollapsibleObject
             public VolumeScaling volumeScaling = new VolumeScaling();
             @ConfigEntry.Gui.RequiresRestart
@@ -98,7 +99,6 @@ public class ModConfig implements ConfigData {
                 @ConfigEntry.Gui.Tooltip()
                 @ConfigEntry.Gui.RequiresRestart
                 public double spreadFallRange = 16.0;
-                @ConfigEntry.Gui.Tooltip()
                 @ConfigEntry.Gui.RequiresRestart
                 public double volumeCorrectionDivisor = 0.648;
             }
@@ -111,22 +111,24 @@ public class ModConfig implements ConfigData {
                 @ConfigEntry.Gui.Tooltip()
                 @ConfigEntry.Gui.RequiresRestart
                 public double glideSpreadFallRange = 32.0;
-                @ConfigEntry.Gui.Tooltip()
                 @ConfigEntry.Gui.RequiresRestart
                 public double glideVolumeCorrectionDivisor = 0.216;
             }
 
             public static class VolumeScaling {
-
                 @ConfigEntry.Gui.RequiresRestart
                 public boolean enableVolumeScaling = true;
+                @ConfigEntry.Gui.Tooltip()
+                @ConfigEntry.Gui.RequiresRestart
+                public double volumeClampMax = 2;
+                @ConfigEntry.Gui.Tooltip(count = 7)
                 @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
                 @ConfigEntry.Gui.RequiresRestart
                 public VolumeScaleMode volumeScaleMode = VolumeScaleMode.linear;
-                @ConfigEntry.Gui.RequiresRestart
-                public double volumeClampMax = 2;
+                @ConfigEntry.Gui.Tooltip
                 @ConfigEntry.Gui.RequiresRestart
                 public double volumeScaleMin = 0.5;
+                @ConfigEntry.Gui.Tooltip
                 @ConfigEntry.Gui.RequiresRestart
                 public double volumeScaleMax = 1.5;
 

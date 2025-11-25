@@ -41,8 +41,8 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
     @Unique private static final double GLIDE_SPREAD_FALL_RANGE = CONFIG.trampleTweaker.farmlandTrampleSpread.glideSpreadRadius.glideSpreadFallRange;
     @Unique private static final double GLIDE_VOLUME_CORRECTION_DIVISOR = CONFIG.trampleTweaker.farmlandTrampleSpread.glideSpreadRadius.glideVolumeCorrectionDivisor;
 
-    @Unique private static final VolumeScaleMode VOLUME_SCALE_MODE = CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeScaleMode;
     @Unique private static final double VOLUME_CLAMP_MAX = CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeClampMax;
+    @Unique private static final VolumeScaleMode VOLUME_SCALE_MODE = CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeScaleMode;
     @Unique private static final double VOLUME_SCALE_MIN = CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeScaleMin;
     @Unique private static final double VOLUME_SCALE_MAX = CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeScaleMax;
 
@@ -123,7 +123,7 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         double fallFactor = (fallDistance - minSpreadFallDistance) / spreadFallRange;
         fallFactor = MathHelper.clamp(fallFactor, 0.0, 1.0);
 
-        double finalMultiplier = MathHelper.clamp(fallFactor * volumeFactor, 0.0, 1.0);
+        double finalMultiplier = fallFactor * volumeFactor;
 
         return (int)(baseSpreadRadius * finalMultiplier);
     }
@@ -135,6 +135,8 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         if (CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.enableVolumeScaling) {
             float normalized = (float) (entityVolume / volumeCorrectionDivisor);
 
+            normalized = (float) MathHelper.clamp(normalized, 0.0, VOLUME_CLAMP_MAX);
+
             normalized = switch (VOLUME_SCALE_MODE) {
                 case sqrt -> (float) Math.sqrt(normalized);
                 case cbrt -> (float) Math.cbrt(normalized);
@@ -144,7 +146,7 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
                 default -> normalized;
             };
 
-            volumeFactor = VOLUME_SCALE_MIN + MathHelper.clamp(normalized, 0.0, VOLUME_CLAMP_MAX) * (VOLUME_SCALE_MAX - VOLUME_SCALE_MIN);
+            volumeFactor = VOLUME_SCALE_MIN + normalized * (VOLUME_SCALE_MAX - VOLUME_SCALE_MIN);
         }
 
         return volumeFactor;
