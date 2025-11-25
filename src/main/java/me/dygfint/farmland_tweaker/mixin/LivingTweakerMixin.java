@@ -55,6 +55,8 @@ public abstract class LivingTweakerMixin {
 
         LivingEntity self = (LivingEntity)(Object)this;
         World world = self.getWorld();
+        if (world.isClient()) return;
+
         boolean onGroundNow = self.isOnGround();
 
         if (!wasOnGround && onGroundNow && self.isGliding()) {
@@ -64,19 +66,16 @@ public abstract class LivingTweakerMixin {
             if (fallDistance > MIN_FALL_DISTANCE) {
                 BlockPos pos = self.getBlockPos();
                 BlockState state = world.getBlockState(pos);
-                Block block = state.getBlock();
 
-                if (!world.isClient()) {
-                    if (block instanceof FarmlandBlock) {
+                if (state.getBlock() instanceof FarmlandBlock) {
+                    ((ServerWorld)world).getServer().execute(() -> {
+                        BlockState newState = world.getBlockState(pos);
+                        Block block = newState.getBlock();
                         if (block instanceof TrampleTweakerMixinAccess farmlandBlock) {
                             farmlandBlock.farmland_tweaker$setGlidingCollision();
                         }
-
-                        ((ServerWorld)world).getServer().execute(() -> {
-                            BlockState newState = world.getBlockState(pos);
-                            newState.getBlock().onLandedUpon(world, newState, pos, self, fallDistance);
-                        });
-                    }
+                        block.onLandedUpon(world, newState, pos, self, fallDistance);
+                    });
                 }
             }
         }

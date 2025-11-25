@@ -79,19 +79,59 @@ public class ModConfig implements ConfigData {
         public static class FarmlandTrampleSpread {
             @ConfigEntry.Gui.RequiresRestart
             public boolean enableSpread = false;
-            @ConfigEntry.Gui.RequiresRestart
-            public double minSpreadFallDistance = 6.0;
-            @ConfigEntry.Gui.Tooltip()
-            @ConfigEntry.Gui.RequiresRestart
-            public double spreadFallRange = 16.0;
-            @ConfigEntry.Gui.RequiresRestart
-            public int maxSpreadRadius = 2;
+            @ConfigEntry.Gui.CollapsibleObject
+            public DefaultSpreadRadius defaultSpreadRadius = new DefaultSpreadRadius();
+            @ConfigEntry.Gui.CollapsibleObject
+            public GlideSpreadRadius glideSpreadRadius = new GlideSpreadRadius();
+            @ConfigEntry.Gui.CollapsibleObject
+            public VolumeScaling volumeScaling = new VolumeScaling();
             @ConfigEntry.Gui.RequiresRestart
             public int spreadRangeMinY = -1;
             @ConfigEntry.Gui.RequiresRestart
             public int spreadRangeMaxY = 1;
-            @ConfigEntry.Gui.RequiresRestart
-            public int glideIncreaseSpreadRadius = 2;
+
+            public static class DefaultSpreadRadius {
+                @ConfigEntry.Gui.RequiresRestart
+                public int baseSpreadRadius = 2;
+                @ConfigEntry.Gui.RequiresRestart
+                public double minSpreadFallDistance = 6.0;
+                @ConfigEntry.Gui.Tooltip()
+                @ConfigEntry.Gui.RequiresRestart
+                public double spreadFallRange = 16.0;
+                @ConfigEntry.Gui.Tooltip()
+                @ConfigEntry.Gui.RequiresRestart
+                public double volumeCorrectionDivisor = 0.648;
+            }
+
+            public static class GlideSpreadRadius {
+                @ConfigEntry.Gui.RequiresRestart
+                public int glideBaseSpreadRadius = 4;
+                @ConfigEntry.Gui.RequiresRestart
+                public double glideMinSpreadFallDistance = 6.0;
+                @ConfigEntry.Gui.Tooltip()
+                @ConfigEntry.Gui.RequiresRestart
+                public double glideSpreadFallRange = 32.0;
+                @ConfigEntry.Gui.Tooltip()
+                @ConfigEntry.Gui.RequiresRestart
+                public double glideVolumeCorrectionDivisor = 0.216;
+            }
+
+            public static class VolumeScaling {
+
+                @ConfigEntry.Gui.RequiresRestart
+                public boolean enableVolumeScaling = true;
+                @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+                @ConfigEntry.Gui.RequiresRestart
+                public VolumeScaleMode volumeScaleMode = VolumeScaleMode.linear;
+                @ConfigEntry.Gui.RequiresRestart
+                public double volumeClampMax = 2;
+                @ConfigEntry.Gui.RequiresRestart
+                public double volumeScaleMin = 0.5;
+                @ConfigEntry.Gui.RequiresRestart
+                public double volumeScaleMax = 1.5;
+
+                public enum VolumeScaleMode {linear, sqrt, cbrt, quadratic, cubic, log}
+            }
         }
     }
 
