@@ -2,7 +2,6 @@ package me.dygfint.farmland_tweaker.mixin;
 
 import me.dygfint.farmland_tweaker.access.TrampleTweakerMixinAccess;
 import me.dygfint.farmland_tweaker.config.ModConfig;
-import me.dygfint.farmland_tweaker.config.ModConfig.TrampleTweaker.FarmlandTrampleSpread.VolumeScaling.VolumeScaleMode;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
@@ -21,36 +20,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FarmlandBlock.class)
 public abstract class TrampleTweakerMixin extends Block implements TrampleTweakerMixinAccess {
-    @Unique private static final ModConfig CONFIG = ModConfig.get();
-
-    @Unique private static final float MIN_TRAMPLE_FALL_DISTANCE = (float) CONFIG.trampleTweaker.minTrampleFallHeight;
-    @Unique private static final float TRAMPLE_CHANCE_RANGE = (float) CONFIG.trampleTweaker.trampleFallRange;
-    @Unique private static final boolean REQUIRE_LIVING_ENTITY_TO_TRAMPLE = CONFIG.trampleTweaker.requireLivingEntityToTrample;
-    @Unique private static final boolean ALLOW_PLAYER_TRAMPLE = CONFIG.trampleTweaker.allowPlayerTrample;
-    @Unique private static final boolean ALLOW_MOB_TRAMPLE = CONFIG.trampleTweaker.allowMobTrample;
-    @Unique private static final float TRAMPLE_VOLUME_THRESHOLD = (float) CONFIG.trampleTweaker.trampleVolumeThreshold;
-    @Unique private static final boolean ALLOW_TRAMPLING_FARMLAND_UNDER_CROPS = CONFIG.trampleTweaker.allowTramplingFarmlandUnderCrops;
-
-    @Unique private static final int BASE_SPREAD_RADIUS = CONFIG.trampleTweaker.farmlandTrampleSpread.defaultSpreadRadius.baseSpreadRadius;
-    @Unique private static final double MIN_SPREAD_FALL_DISTANCE = CONFIG.trampleTweaker.farmlandTrampleSpread.defaultSpreadRadius.minSpreadFallDistance;
-    @Unique private static final double SPREAD_FALL_RANGE = CONFIG.trampleTweaker.farmlandTrampleSpread.defaultSpreadRadius.spreadFallRange;
-    @Unique private static final double VOLUME_CORRECTION_DIVISOR = CONFIG.trampleTweaker.farmlandTrampleSpread.defaultSpreadRadius.volumeCorrectionDivisor;
-
-    @Unique private static final int GLIDE_BASE_SPREAD_RADIUS = CONFIG.trampleTweaker.farmlandTrampleSpread.glideSpreadRadius.glideBaseSpreadRadius;
-    @Unique private static final double GLIDE_MIN_SPREAD_FALL_DISTANCE = CONFIG.trampleTweaker.farmlandTrampleSpread.glideSpreadRadius.glideMinSpreadFallDistance;
-    @Unique private static final double GLIDE_SPREAD_FALL_RANGE = CONFIG.trampleTweaker.farmlandTrampleSpread.glideSpreadRadius.glideSpreadFallRange;
-    @Unique private static final double GLIDE_VOLUME_CORRECTION_DIVISOR = CONFIG.trampleTweaker.farmlandTrampleSpread.glideSpreadRadius.glideVolumeCorrectionDivisor;
-
-    @Unique private static final double VOLUME_CLAMP_MAX = CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeClampMax;
-    @Unique private static final VolumeScaleMode VOLUME_SCALE_MODE = CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeScaleMode;
-    @Unique private static final double VOLUME_SCALE_MIN = CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeScaleMin;
-    @Unique private static final double VOLUME_SCALE_MAX = CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeScaleMax;
-
-    @Unique private static final int SPREAD_RANGE_MIN_Y = CONFIG.trampleTweaker.farmlandTrampleSpread.spreadRangeMinY;
-    @Unique private static final int SPREAD_RANGE_MAX_Y = CONFIG.trampleTweaker.farmlandTrampleSpread.spreadRangeMaxY;
-
-
-
     @Unique
     private boolean isGlidingCollision = false;
 
@@ -60,22 +29,23 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
     private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, double fallDistance, CallbackInfo ci) {
-        if (!(CONFIG.trampleTweaker.enableTrampleTweaker || isGlidingCollision)) return;
+        ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
+        if (!(config.enableTrampleTweaker || isGlidingCollision)) return;
 
         if (!world.isClient()) {
-            float chanceValue = (float) ((fallDistance - MIN_TRAMPLE_FALL_DISTANCE) / TRAMPLE_CHANCE_RANGE);
+            float chanceValue = (float) ((fallDistance - (float) config.minTrampleFallHeight) / (float) config.trampleFallRange);
             float entityVolume = entity.getWidth() * entity.getWidth() * entity.getHeight();
             boolean hasCrop = world.getBlockState(pos.up()).isIn(BlockTags.MAINTAINS_FARMLAND);
 
-            if (canTrampleFarmland(world, entity, chanceValue, entityVolume, hasCrop, isGlidingCollision)) {
+            if (canTrampleFarmland(world, entity, config, chanceValue, entityVolume, hasCrop, isGlidingCollision)) {
                 FarmlandBlock.setToDirt(entity, state, world, pos);
 
-                if (CONFIG.trampleTweaker.farmlandTrampleSpread.enableSpread) {
-                    int radius = getRadius(fallDistance, entityVolume, isGlidingCollision);
+                if (config.farmlandTrampleSpread.enableSpread) {
+                    int radius = getRadius(config.farmlandTrampleSpread, fallDistance, entityVolume, isGlidingCollision);
 
                     BlockPos.Mutable m = new BlockPos.Mutable();
 
-                    for (int dy = SPREAD_RANGE_MIN_Y; dy <= SPREAD_RANGE_MAX_Y; dy++) {
+                    for (int dy = config.farmlandTrampleSpread.spreadRangeMinY; dy <= config.farmlandTrampleSpread.spreadRangeMaxY; dy++) {
                         for (int dx = -radius; dx <= radius; dx++) {
                             for (int dz = -radius; dz <= radius; dz++) {
                                 if (dx * dx + dz * dz <= (radius + 0.5) * (radius + 0.5)) {
@@ -101,24 +71,24 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
     }
 
     @Unique
-    private static boolean canTrampleFarmland(World world, Entity entity,float chanceValue, float entityVolume, boolean hasCrop, boolean isGlidingCollision) {
+    private static boolean canTrampleFarmland(World world, Entity entity, ModConfig.TrampleTweaker config,float chanceValue, float entityVolume, boolean hasCrop, boolean isGlidingCollision) {
         boolean passedTrampleChance = world.random.nextFloat() < chanceValue;
-        boolean isLivingEntityRequirementMet = REQUIRE_LIVING_ENTITY_TO_TRAMPLE ? entity instanceof LivingEntity : true;
-        boolean isTrampleAllowed = entity instanceof PlayerEntity ? ALLOW_PLAYER_TRAMPLE : ALLOW_MOB_TRAMPLE;
-        boolean isLargeEnoughToTrample  = entityVolume > TRAMPLE_VOLUME_THRESHOLD;
-        boolean canTrampleCropFarmland = hasCrop ? ALLOW_TRAMPLING_FARMLAND_UNDER_CROPS : true;
+        boolean isLivingEntityRequirementMet = config.requireLivingEntityToTrample ? entity instanceof LivingEntity : true;
+        boolean isTrampleAllowed = entity instanceof PlayerEntity ? config.allowPlayerTrample : config.allowMobTrample;
+        boolean isLargeEnoughToTrample  = entityVolume > (float) config.trampleVolumeThreshold;
+        boolean canTrampleCropFarmland = hasCrop ? config.allowTramplingFarmlandUnderCrops : true;
 
         return isGlidingCollision || passedTrampleChance && isLivingEntityRequirementMet && isTrampleAllowed && isLargeEnoughToTrample && canTrampleCropFarmland;
     }
 
     @Unique
-    private static int getRadius(double fallDistance, float entityVolume, boolean isGlidingCollision) {
-        int baseSpreadRadius = isGlidingCollision ? GLIDE_BASE_SPREAD_RADIUS : BASE_SPREAD_RADIUS;
-        double minSpreadFallDistance = isGlidingCollision ? GLIDE_MIN_SPREAD_FALL_DISTANCE : MIN_SPREAD_FALL_DISTANCE;
-        double spreadFallRange = isGlidingCollision ? GLIDE_SPREAD_FALL_RANGE : SPREAD_FALL_RANGE;
-        double volumeCorrectionDivisor = isGlidingCollision ? GLIDE_VOLUME_CORRECTION_DIVISOR : VOLUME_CORRECTION_DIVISOR;
+    private static int getRadius(ModConfig.TrampleTweaker.FarmlandTrampleSpread config, double fallDistance, float entityVolume, boolean isGlidingCollision) {
+        int baseSpreadRadius = isGlidingCollision ? config.glideSpreadRadius.glideBaseSpreadRadius : config.defaultSpreadRadius.baseSpreadRadius;
+        double minSpreadFallDistance = isGlidingCollision ? config.glideSpreadRadius.glideMinSpreadFallDistance : config.defaultSpreadRadius.minSpreadFallDistance;
+        double spreadFallRange = isGlidingCollision ? config.glideSpreadRadius.glideSpreadFallRange : config.defaultSpreadRadius.spreadFallRange;
+        double volumeCorrectionDivisor = isGlidingCollision ? config.glideSpreadRadius.glideVolumeCorrectionDivisor : config.defaultSpreadRadius.volumeCorrectionDivisor;
 
-        double volumeFactor = getVolumeFactor(entityVolume, volumeCorrectionDivisor);
+        double volumeFactor = getVolumeFactor(config, entityVolume, volumeCorrectionDivisor);
 
         double fallFactor = (fallDistance - minSpreadFallDistance) / spreadFallRange;
         fallFactor = MathHelper.clamp(fallFactor, 0.0, 1.0);
@@ -129,15 +99,15 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
     }
 
     @Unique
-    private static double getVolumeFactor(float entityVolume, double volumeCorrectionDivisor) {
+    private static double getVolumeFactor(ModConfig.TrampleTweaker.FarmlandTrampleSpread config, float entityVolume, double volumeCorrectionDivisor) {
         double volumeFactor = 1.0;
 
-        if (CONFIG.trampleTweaker.farmlandTrampleSpread.volumeScaling.enableVolumeScaling) {
+        if (ModConfig.get().trampleTweaker.farmlandTrampleSpread.volumeScaling.enableVolumeScaling) {
             float normalized = (float) (entityVolume / volumeCorrectionDivisor);
 
-            normalized = (float) MathHelper.clamp(normalized, 0.0, VOLUME_CLAMP_MAX);
+            normalized = (float) MathHelper.clamp(normalized, 0.0,  config.volumeScaling.volumeClampMax);
 
-            normalized = switch (VOLUME_SCALE_MODE) {
+            normalized = switch (config.volumeScaling.volumeScaleMode) {
                 case sqrt -> (float) Math.sqrt(normalized);
                 case cbrt -> (float) Math.cbrt(normalized);
                 case quadratic -> normalized * normalized;
@@ -146,7 +116,7 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
                 default -> normalized;
             };
 
-            volumeFactor = VOLUME_SCALE_MIN + normalized * (VOLUME_SCALE_MAX - VOLUME_SCALE_MIN);
+            volumeFactor =  MathHelper.clamp(normalized, config.volumeScaling.volumeScaleMin, config.volumeScaling.volumeScaleMax);
         }
 
         return volumeFactor;

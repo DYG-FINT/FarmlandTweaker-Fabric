@@ -18,11 +18,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingTweakerMixin {
-    @Unique private static final ModConfig CONFIG = ModConfig.get();
-
-    @Unique private static final boolean NOT_TWEAKER = !CONFIG.livingTweaker.enableLivingTweaker || !CONFIG.livingTweaker.allowGlidingCollisionTrample;
-    @Unique private static final float MIN_FALL_DISTANCE = (float) CONFIG.trampleTweaker.minTrampleFallHeight;
-
     @Unique
     private boolean wasOnGround = false;
     @Unique
@@ -36,7 +31,8 @@ public abstract class LivingTweakerMixin {
             )
     )
     private void farmland_tweaker$captureVelocity(Vec3d movementInput, CallbackInfo ci) {
-        if (NOT_TWEAKER) return;
+        ModConfig.LivingTweaker config = ModConfig.get().livingTweaker;
+        if (!config.enableLivingTweaker || !config.allowGlidingCollisionTrample) return;
 
         LivingEntity self = (LivingEntity)(Object)this;
         glideVelocity = self.getVelocity();
@@ -51,7 +47,10 @@ public abstract class LivingTweakerMixin {
             )
     )
     private void farmland_tweaker$onGlidingLand(Vec3d movementInput, CallbackInfo ci) {
-        if (NOT_TWEAKER) return;
+        ModConfig config = ModConfig.get();
+        if (!config.livingTweaker.enableLivingTweaker || !config.livingTweaker.allowGlidingCollisionTrample) return;
+
+        float minTrampleFallHeight = (float) config.trampleTweaker.minTrampleFallHeight;
 
         LivingEntity self = (LivingEntity)(Object)this;
         World world = self.getWorld();
@@ -60,10 +59,15 @@ public abstract class LivingTweakerMixin {
         boolean onGroundNow = self.isOnGround();
 
         if (!wasOnGround && onGroundNow && self.isGliding()) {
-            double fallDistance = (glideVelocity.y * glideVelocity.y) / 0.16;
+            double vx = glideVelocity.x;
+            double vy = glideVelocity.y;
+            double vz = glideVelocity.z;
+
+            double speedSq = vx * vx + vy * vy + vz * vz;
+            double fallDistance = speedSq / 0.16;
             // fallDamage: (float) Math.max(0, fallDistance - 3)
 
-            if (fallDistance > MIN_FALL_DISTANCE) {
+            if (fallDistance > minTrampleFallHeight) {
                 BlockPos pos = self.getBlockPos();
                 BlockState state = world.getBlockState(pos);
 
