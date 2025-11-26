@@ -64,6 +64,5 @@
 
   "text.autoconfig.farmland_tweaker.category.livingTweaker": "Living Tweaker",
   "text.autoconfig.farmland_tweaker.option.livingTweaker.enableLivingTweaker": "Enable Living Tweaker",
-  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample": "Allow Gliding Collision Trample",
-  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample.@Tooltip": "(This setting is independent from the 'Trample Tweaker' configuration.)"
+  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample": "Allow Gliding Collision Trample"
 }

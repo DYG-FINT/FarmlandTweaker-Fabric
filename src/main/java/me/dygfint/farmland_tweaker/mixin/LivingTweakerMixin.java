@@ -65,7 +65,6 @@ public abstract class LivingTweakerMixin {
 
             double speedSq = vx * vx + vy * vy + vz * vz;
             double fallDistance = speedSq / 0.16;
-            // fallDamage: (float) Math.max(0, fallDistance - 3)
 
             if (fallDistance > minTrampleFallHeight) {
                 BlockPos pos = self.getBlockPos();

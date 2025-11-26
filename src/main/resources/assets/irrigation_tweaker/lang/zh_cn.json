@@ -64,6 +64,5 @@
 
   "text.autoconfig.farmland_tweaker.category.livingTweaker": "生物调整",
   "text.autoconfig.farmland_tweaker.option.livingTweaker.enableLivingTweaker": "启用生物调整",
-  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample": "是否允许滑翔撞击破坏耕地",
-  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample.@Tooltip": "(此配置项不受“踩踏调整”约束。)"
+  "text.autoconfig.farmland_tweaker.option.livingTweaker.allowGlidingCollisionTrample": "是否允许滑翔撞击破坏耕地"
 }

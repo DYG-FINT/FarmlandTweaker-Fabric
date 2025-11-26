@@ -115,7 +115,6 @@ public class ModConfig implements ConfigData {
 
     public static class LivingTweaker {
         public boolean enableLivingTweaker = true;
-        @ConfigEntry.Gui.Tooltip()
         public boolean allowGlidingCollisionTrample = false;
     }
 }

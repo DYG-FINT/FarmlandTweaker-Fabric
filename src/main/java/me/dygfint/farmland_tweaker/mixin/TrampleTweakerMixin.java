@@ -29,43 +29,35 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
     private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, double fallDistance, CallbackInfo ci) {
+        if (world.isClient()) return;
+
         ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
         if (!(config.enableTrampleTweaker || isGlidingCollision)) return;
 
-        if (!world.isClient()) {
-            float chanceValue = (float) ((fallDistance - (float) config.minTrampleFallHeight) / (float) config.trampleFallRange);
-            float entityVolume = entity.getWidth() * entity.getWidth() * entity.getHeight();
-            boolean hasCrop = world.getBlockState(pos.up()).isIn(BlockTags.MAINTAINS_FARMLAND);
-
-            if (canTrampleFarmland(world, entity, config, chanceValue, entityVolume, hasCrop, isGlidingCollision)) {
-                FarmlandBlock.setToDirt(entity, state, world, pos);
-
-                if (config.farmlandTrampleSpread.enableSpread) {
-                    int radius = getRadius(config.farmlandTrampleSpread, fallDistance, entityVolume, isGlidingCollision);
-
-                    BlockPos.Mutable m = new BlockPos.Mutable();
-
-                    for (int dy = config.farmlandTrampleSpread.spreadRangeMinY; dy <= config.farmlandTrampleSpread.spreadRangeMaxY; dy++) {
-                        for (int dx = -radius; dx <= radius; dx++) {
-                            for (int dz = -radius; dz <= radius; dz++) {
-                                if (dx * dx + dz * dz <= (radius + 0.5) * (radius + 0.5)) {
-                                    m.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
-
-                                    BlockState targetState = world.getBlockState(m);
-
-                                    if (targetState.getBlock() instanceof FarmlandBlock) {
-                                        FarmlandBlock.setToDirt(entity, targetState, world, m);
-                                    }
+        float chanceValue = (float) ((fallDistance - (float) config.minTrampleFallHeight) / (float) config.trampleFallRange);
+        float entityVolume = entity.getWidth() * entity.getWidth() * entity.getHeight();
+        boolean hasCrop = world.getBlockState(pos.up()).isIn(BlockTags.MAINTAINS_FARMLAND);
+        if (canTrampleFarmland(world, entity, config, chanceValue, entityVolume, hasCrop, isGlidingCollision)) {
+            FarmlandBlock.setToDirt(entity, state, world, pos);
+            if (config.farmlandTrampleSpread.enableSpread) {
+                int radius = getRadius(config.farmlandTrampleSpread, fallDistance, entityVolume, isGlidingCollision);
+                BlockPos.Mutable m = new BlockPos.Mutable();
+                for (int dy = config.farmlandTrampleSpread.spreadRangeMinY; dy <= config.farmlandTrampleSpread.spreadRangeMaxY; dy++) {
+                    for (int dx = -radius; dx <= radius; dx++) {
+                        for (int dz = -radius; dz <= radius; dz++) {
+                            if (dx * dx + dz * dz <= (radius + 0.5) * (radius + 0.5)) {
+                                m.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
+                                BlockState targetState = world.getBlockState(m);
+                                if (targetState.getBlock() instanceof FarmlandBlock) {
+                                    FarmlandBlock.setToDirt(entity, targetState, world, m);
                                 }
                             }
                         }
                     }
                 }
-
-                isGlidingCollision = false;
             }
+            isGlidingCollision = false;
         }
-
         super.onLandedUpon(world, state, pos, entity, fallDistance);
         ci.cancel();
     }
@@ -78,7 +70,7 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         boolean isLargeEnoughToTrample  = entityVolume > (float) config.trampleVolumeThreshold;
         boolean canTrampleCropFarmland = hasCrop ? config.allowTramplingFarmlandUnderCrops : true;
 
-        return isGlidingCollision || passedTrampleChance && isLivingEntityRequirementMet && isTrampleAllowed && isLargeEnoughToTrample && canTrampleCropFarmland;
+        return passedTrampleChance && isLivingEntityRequirementMet && isTrampleAllowed && isLargeEnoughToTrample && canTrampleCropFarmland;
     }
 
     @Unique
