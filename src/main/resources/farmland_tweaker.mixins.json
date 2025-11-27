@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "IrrigationTweakerMixin",
-    "LivingTweakerMixin",
+    "LivingEntityMixin",
     "MoistureTweakerMixin",
     "TrampleTweakerMixin"
   ],

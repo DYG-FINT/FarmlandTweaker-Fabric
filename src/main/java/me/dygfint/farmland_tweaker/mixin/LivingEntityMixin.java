@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingTweakerMixin {
+public abstract class LivingEntityMixin {
     @Unique
     private boolean wasOnGround = false;
     @Unique
@@ -31,8 +31,8 @@ public abstract class LivingTweakerMixin {
             *///?}
     ))
     private void farmland_tweaker$captureVelocity(Vec3d movementInput, CallbackInfo ci) {
-        ModConfig.LivingTweaker config = ModConfig.get().livingTweaker;
-        if (!config.enableLivingTweaker || !config.allowGlidingCollisionTrample) return;
+        ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
+        if (!(config.enableTrampleTweaker && config.allowGlidingCollisionTrample)) return;
 
         LivingEntity self = (LivingEntity)(Object)this;
         glideVelocity = self.getVelocity();
@@ -47,11 +47,6 @@ public abstract class LivingTweakerMixin {
             shift = At.Shift.AFTER
     ))
     private void farmland_tweaker$onGlidingLand(Vec3d movementInput, CallbackInfo ci) {
-        ModConfig config = ModConfig.get();
-        if (!config.livingTweaker.enableLivingTweaker || !config.livingTweaker.allowGlidingCollisionTrample) return;
-
-        float minTrampleFallHeight = (float) config.trampleTweaker.minTrampleFallHeight;
-
         LivingEntity self = (LivingEntity)(Object)this;
         World world = self.getWorld();
         if (world.isClient()) return;
@@ -66,7 +61,7 @@ public abstract class LivingTweakerMixin {
             double speedSq = vx * vx + vy * vy + vz * vz;
             double fallDistance = speedSq / 0.16;
 
-            if (fallDistance > minTrampleFallHeight) {
+            if (fallDistance > 0.0) {
                 BlockPos pos = self.getBlockPos();
                 BlockState state = world.getBlockState(pos);
 

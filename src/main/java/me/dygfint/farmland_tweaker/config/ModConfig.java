@@ -34,9 +34,6 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Category("moistureTweaker")
     @ConfigEntry.Gui.TransitiveObject
     public MoistureTweaker moistureTweaker = new MoistureTweaker();
-    @ConfigEntry.Category("livingTweaker")
-    @ConfigEntry.Gui.TransitiveObject
-    public LivingTweaker livingTweaker = new LivingTweaker();
 
     public static class IrrigationTweaker {
         public boolean enableIrrigationTweaker = true;
@@ -58,6 +55,7 @@ public class ModConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip()
         public boolean allowMobTrample = true;
         public double trampleVolumeThreshold = 0.512;
+        public boolean allowGlidingCollisionTrample = false;
         public double glideTrampleVolumeThreshold = 0.216;
         public boolean allowTramplingFarmlandUnderCrops = true;
         @ConfigEntry.Gui.CollapsibleObject
@@ -111,10 +109,5 @@ public class ModConfig implements ConfigData {
     public static class MoistureTweaker {
         public boolean enableMoistureTweaker = true;
         public boolean preventCropFarmlandDryToDirt = true;
-    }
-
-    public static class LivingTweaker {
-        public boolean enableLivingTweaker = true;
-        public boolean allowGlidingCollisionTrample = false;
     }
 }
