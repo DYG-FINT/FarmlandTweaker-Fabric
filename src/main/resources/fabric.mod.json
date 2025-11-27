@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "farmland_tweaker",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Farmland Tweaker",
   "description": "",
   "authors": ["DYG_FINT"],
@@ -30,9 +30,9 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "minecraft": "${minecraft_version}",
-    "cloth-config": ">=${cloth_config_version}"
+    "cloth-config": "*"
   },
   "suggests": {
-    "modmenu": ">=${modmenu_version}"
+    "modmenu": "*"
   }
 }
