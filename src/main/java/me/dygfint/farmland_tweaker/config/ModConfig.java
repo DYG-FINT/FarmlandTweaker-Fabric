@@ -21,10 +21,7 @@ public class ModConfig implements ConfigData {
     }
 
     public static ModConfig get() {
-        if (!isInitConfig) {
-            init();
-        }
-
+        init();
         return AutoConfig.getConfigHolder(ModConfig.class).getConfig();
     }
 

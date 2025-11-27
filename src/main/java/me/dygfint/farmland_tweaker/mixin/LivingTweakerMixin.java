@@ -75,14 +75,16 @@ public abstract class LivingTweakerMixin {
                         BlockState newState = world.getBlockState(pos);
                         Block block = newState.getBlock();
                         if (block instanceof TrampleTweakerMixinAccess farmlandBlock) {
-                            farmlandBlock.farmland_tweaker$setGlidingCollision();
-                        }
+                            farmlandBlock.farmland_tweaker$setGlidingCollision(true);
 
-                        //? if >= 1.21.5 {
-                        block.onLandedUpon(world, newState, pos, self, fallDistance);
-                        //?} else {
-                        /*block.onLandedUpon(world, newState, pos, self, (float) fallDistance);
-                        *///?}
+                            //? if >= 1.21.5 {
+                            block.onLandedUpon(world, newState, pos, self, fallDistance);
+                            //?} else {
+                            /*block.onLandedUpon(world, newState, pos, self, (float) fallDistance);
+                             *///?}
+
+                            farmlandBlock.farmland_tweaker$setGlidingCollision(false);
+                        }
                     });
                 }
             }

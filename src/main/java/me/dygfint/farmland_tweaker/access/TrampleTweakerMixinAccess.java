@@ -1,5 +1,5 @@
 package me.dygfint.farmland_tweaker.access;
 
 public interface TrampleTweakerMixinAccess {
-    void farmland_tweaker$setGlidingCollision();
+    void farmland_tweaker$setGlidingCollision(boolean glidingCollisionState);
 }

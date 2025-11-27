@@ -61,7 +61,6 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
                     }
                 }
             }
-            isGlidingCollision = false;
         }
         super.onLandedUpon(world, state, pos, entity, fallDistance);
         ci.cancel();
@@ -120,8 +119,8 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
     }
 
     @Override
-    public void farmland_tweaker$setGlidingCollision() {
-        this.isGlidingCollision = true;
+    public void farmland_tweaker$setGlidingCollision(boolean glidingCollisionState) {
+        this.isGlidingCollision = glidingCollisionState;
     }
 }
 
