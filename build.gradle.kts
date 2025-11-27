@@ -7,7 +7,7 @@ stonecutter {
 
 }
 
-version = "${property("mod_version")}+${property("minecraft_version_min")}${property("minecraft_version_max")}"
+version = "${property("mod_version")}+Fabric.${property("minecraft_version_min")}${property("minecraft_version_max")}"
 base.archivesName = property("archives_base_name") as String
 
 repositories {

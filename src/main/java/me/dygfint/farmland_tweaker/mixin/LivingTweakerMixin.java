@@ -23,13 +23,13 @@ public abstract class LivingTweakerMixin {
     @Unique
     private Vec3d glideVelocity;
 
-    @Inject(
-            method = "travel",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/entity/LivingEntity;travelGliding(Lnet/minecraft/util/math/Vec3d;)V"
-            )
-    )
+    @Inject(method = "travel", at = @At(value = "INVOKE",
+            //? if >= 1.21.5 {
+            target = "Lnet/minecraft/entity/LivingEntity;travelGliding(Lnet/minecraft/util/math/Vec3d;)V"
+            //?} else {
+            /*target = "Lnet/minecraft/entity/LivingEntity;travelGliding()V"
+            *///?}
+    ))
     private void farmland_tweaker$captureVelocity(Vec3d movementInput, CallbackInfo ci) {
         ModConfig.LivingTweaker config = ModConfig.get().livingTweaker;
         if (!config.enableLivingTweaker || !config.allowGlidingCollisionTrample) return;
@@ -38,14 +38,14 @@ public abstract class LivingTweakerMixin {
         glideVelocity = self.getVelocity();
     }
 
-    @Inject(
-            method = "travel",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/entity/LivingEntity;travelGliding(Lnet/minecraft/util/math/Vec3d;)V",
-                    shift = At.Shift.AFTER
-            )
-    )
+    @Inject(method = "travel", at = @At(value = "INVOKE",
+            //? if >= 1.21.5 {
+            target = "Lnet/minecraft/entity/LivingEntity;travelGliding(Lnet/minecraft/util/math/Vec3d;)V",
+            //?} else {
+            /*target = "Lnet/minecraft/entity/LivingEntity;travelGliding()V",
+            *///?}
+            shift = At.Shift.AFTER
+    ))
     private void farmland_tweaker$onGlidingLand(Vec3d movementInput, CallbackInfo ci) {
         ModConfig config = ModConfig.get();
         if (!config.livingTweaker.enableLivingTweaker || !config.livingTweaker.allowGlidingCollisionTrample) return;
@@ -77,7 +77,12 @@ public abstract class LivingTweakerMixin {
                         if (block instanceof TrampleTweakerMixinAccess farmlandBlock) {
                             farmlandBlock.farmland_tweaker$setGlidingCollision();
                         }
+
+                        //? if >= 1.21.5 {
                         block.onLandedUpon(world, newState, pos, self, fallDistance);
+                        //?} else {
+                        /*block.onLandedUpon(world, newState, pos, self, (float) fallDistance);
+                        *///?}
                     });
                 }
             }

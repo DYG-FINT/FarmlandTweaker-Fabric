@@ -28,8 +28,14 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
     }
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
+    //? if >= 1.21.5 {
     private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, double fallDistance, CallbackInfo ci) {
+    //?} else {
+    /*private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
+    *///?}
         if (world.isClient()) return;
+
+        System.out.println("fallDistance: " + fallDistance);
 
         ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
         if (!(config.enableTrampleTweaker || isGlidingCollision)) return;
@@ -37,6 +43,7 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         float chanceValue = (float) ((fallDistance - (float) config.minTrampleFallHeight) / (float) config.trampleFallRange);
         float entityVolume = entity.getWidth() * entity.getWidth() * entity.getHeight();
         boolean hasCrop = world.getBlockState(pos.up()).isIn(BlockTags.MAINTAINS_FARMLAND);
+
         if (canTrampleFarmland(world, entity, config, chanceValue, entityVolume, hasCrop, isGlidingCollision)) {
             FarmlandBlock.setToDirt(entity, state, world, pos);
             if (config.farmlandTrampleSpread.enableSpread) {
