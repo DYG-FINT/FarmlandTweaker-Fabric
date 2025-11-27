@@ -35,8 +35,6 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
     *///?}
         if (world.isClient()) return;
 
-        System.out.println("fallDistance: " + fallDistance);
-
         ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
         if (!(config.enableTrampleTweaker || isGlidingCollision)) return;
 
@@ -74,7 +72,7 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         boolean passedTrampleChance = world.random.nextFloat() < chanceValue;
         boolean isLivingEntityRequirementMet = config.requireLivingEntityToTrample ? entity instanceof LivingEntity : true;
         boolean isTrampleAllowed = entity instanceof PlayerEntity ? config.allowPlayerTrample : config.allowMobTrample;
-        boolean isLargeEnoughToTrample  = entityVolume > (float) config.trampleVolumeThreshold;
+        boolean isLargeEnoughToTrample  = entityVolume >= (isGlidingCollision ? (float) config.glideTrampleVolumeThreshold : (float) config.trampleVolumeThreshold);
         boolean canTrampleCropFarmland = hasCrop ? config.allowTramplingFarmlandUnderCrops : true;
 
         return passedTrampleChance && isLivingEntityRequirementMet && isTrampleAllowed && isLargeEnoughToTrample && canTrampleCropFarmland;

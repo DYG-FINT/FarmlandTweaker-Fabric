@@ -23,6 +23,7 @@
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample": "非玩家生物是否能踩坏耕地",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample.@Tooltip": "（此配置项不受“生物破坏”游戏规则所影响。）",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "实体能踩坏耕地所需的最小体积",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTrampleVolumeThreshold": "滑翔中的实体能踩坏耕地所需的最小体积",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowTramplingFarmlandUnderCrops": "是否允许踩坏有作物的耕地",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread": "踩坏或撞击破坏耕地时触发额外扩散破坏",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.enableSpread": "启用扩散",

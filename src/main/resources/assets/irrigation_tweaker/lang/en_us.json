@@ -23,6 +23,7 @@
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample": "Allow Mob Trample",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample.@Tooltip": "(This configuration is not governed by the 'mobGriefing' game rule.)",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "Trample Volume Threshold",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTrampleVolumeThreshold": "Gliding Trample Volume Threshold",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowTramplingFarmlandUnderCrops": "Allow Trampling Farmland Under Crops",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread": "Farmland Trample Spread",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.enableSpread": "Enable Spread",

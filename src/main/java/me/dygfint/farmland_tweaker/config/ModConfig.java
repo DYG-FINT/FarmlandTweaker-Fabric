@@ -61,6 +61,7 @@ public class ModConfig implements ConfigData {
         @ConfigEntry.Gui.Tooltip()
         public boolean allowMobTrample = true;
         public double trampleVolumeThreshold = 0.512;
+        public double glideTrampleVolumeThreshold = 0.216;
         public boolean allowTramplingFarmlandUnderCrops = true;
         @ConfigEntry.Gui.CollapsibleObject
         public FarmlandTrampleSpread farmlandTrampleSpread = new FarmlandTrampleSpread();
