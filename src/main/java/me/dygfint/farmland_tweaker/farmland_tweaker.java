@@ -1,5 +1,6 @@
 package me.dygfint.farmland_tweaker;
 
+import me.dygfint.farmland_tweaker.config.ModConfig;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,6 @@ public class farmland_tweaker implements ModInitializer {
 
     @Override
     public void onInitialize() {
-
+        ModConfig.init();
     }
 }

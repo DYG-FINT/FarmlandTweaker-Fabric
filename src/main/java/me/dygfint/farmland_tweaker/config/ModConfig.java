@@ -14,8 +14,10 @@ import static me.dygfint.farmland_tweaker.farmland_tweaker.isInitConfig;
 @Config(name = "farmland_tweaker")
 public class ModConfig implements ConfigData {
     public static void init() {
-        AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
-        isInitConfig = true;
+        if (!isInitConfig) {
+            AutoConfig.register(ModConfig.class, GsonConfigSerializer::new);
+            isInitConfig = true;
+        }
     }
 
     public static ModConfig get() {
