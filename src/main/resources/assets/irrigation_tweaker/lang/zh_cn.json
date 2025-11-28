@@ -10,22 +10,35 @@
   "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks.@Tooltip[0]": "指定额外能为耕地提供水分的方块。",
   "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks.@Tooltip[1]": "例如冰、熔岩或耕地，只要在范围内，就能阻止耕地变干。",
 
+
+
   "text.autoconfig.farmland_tweaker.category.trampleTweaker": "踩踏调整",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.enableTrampleTweaker": "启用踩踏调整",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleBPS": "最小踩踏BPS",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleBPS.@Tooltip[0]": "实体至少需要达到多少BPS（每秒方块数），才有踩坏耕地的可能性。",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleBPS.@Tooltip[1]": "越高表示越难踩坏。",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleBPSRange": "概率范围",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleBPSRange.@Tooltip[0]": "从最低踩踏BPS（每秒方块数）开始，需要多大的差值，踩坏耕地的概率才会上升到 100%。",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleBPSRange.@Tooltip[1]": "越大表示概率增加得越慢。",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.requireLivingEntityToTrample": "仅生物能踩坏耕地",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowPlayerTrample": "玩家是否能踩坏耕地",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample": "非玩家生物是否能踩坏耕地",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample.@Tooltip": "（此配置项不受“生物破坏”游戏规则所影响。）",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "实体能踩坏耕地所需的最小体积",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowGlidingCollisionTrample": "是否允许滑翔撞击破坏耕地",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTrampleVolumeThreshold": "滑翔中的实体能踩坏耕地所需的最小体积",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowTramplingFarmlandUnderCrops": "是否允许踩坏有作物的耕地",
+
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker": "默认调整",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.minTrampleBPS": "最小踩踏BPS",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.minTrampleBPS.@Tooltip[0]": "实体至少需要达到多少BPS（每秒方块数），才有踩坏耕地的可能性。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.minTrampleBPS.@Tooltip[1]": "越高表示越难踩坏。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.trampleBPSRange": "概率范围",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.trampleBPSRange.@Tooltip[0]": "从最小踩踏BPS（每秒方块数）开始，需要多大的差值，踩坏耕地的概率才会上升到 100%。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.trampleBPSRange.@Tooltip[1]": "越大表示概率增加得越慢。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.trampleVolumeThreshold": "实体能踩坏耕地所需的最小体积",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.allowTramplingFarmlandUnderCrops": "是否允许踩坏有作物的耕地",
+
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker": "滑翔调整",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.minGlideTrampleBPS": "滑翔最小踩踏BPS",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.minGlideTrampleBPS.@Tooltip[0]": "滑翔中的实体至少需要达到多少BPS（每秒方块数），才有踩坏耕地的可能性。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.minGlideTrampleBPS.@Tooltip[1]": "越高表示越难踩坏。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleBPSRange": "概率范围",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleBPSRange.@Tooltip[0]": "从最滑翔小踩踏BPS（每秒方块数）开始，需要多大的差值，踩坏耕地的概率才会上升到 100%。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleBPSRange.@Tooltip[1]": "越大表示概率增加得越慢。",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleVolumeThreshold": "滑翔中的实体能踩坏耕地所需的最小体积",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.allowGlideTramplingFarmlandUnderCrops": "是否允许滑翔踩坏有作物的耕地",
+
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread": "踩坏或撞击破坏耕地时触发额外扩散破坏",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.enableSpread": "启用扩散",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.defaultSpreadRadius": "默认扩散半径",
@@ -59,6 +72,8 @@
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeScaleMax.@Tooltip": "实体体积映射得到的倍率最大可以到达的值。",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadRangeMinY": "扩散的最小 Y 范围",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadRangeMaxY": "扩散的最大 Y 范围",
+
+
 
   "text.autoconfig.farmland_tweaker.category.moistureTweaker": "湿度调整",
   "text.autoconfig.farmland_tweaker.option.moistureTweaker.enableMoistureTweaker": "启用湿度调整",

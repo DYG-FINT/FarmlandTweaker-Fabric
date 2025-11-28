@@ -10,22 +10,35 @@
   "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks.@Tooltip[0]": "Specify additional blocks that can keep farmland hydrated.",
   "text.autoconfig.farmland_tweaker.option.irrigationTweaker.extraHydrationBlocks.@Tooltip[1]": "For example, ice, lava, or even farmland itself can prevent farmland from drying out when within range.",
 
+
+
   "text.autoconfig.farmland_tweaker.category.trampleTweaker": "Trample Tweaker",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.enableTrampleTweaker": "Enable Trample Tweaker",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleBPS": "Min Trample Velocity",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleBPS.@Tooltip[0]": "The minimum BPS (blocks per second) an entity must reach to have a chance to trample farmland.",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.minTrampleBPS.@Tooltip[1]": "Higher values make trampling more difficult.",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleBPSRange": "Probability Range",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleBPSRange.@Tooltip[0]": "Starting from the minimum trample BPS (blocks per second), how large a difference is required for the trampling chance to reach 100%.",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleBPSRange.@Tooltip[1]": "Larger values make the probability increase more slowly.",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.requireLivingEntityToTrample": "Require Living Entity To Trample",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowPlayerTrample": "Allow Player Trample",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample": "Allow Mob Trample",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowMobTrample.@Tooltip": "(This configuration is not governed by the 'mobGriefing' game rule.)",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.trampleVolumeThreshold": "Trample Volume Threshold",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowGlidingCollisionTrample": "Allow Gliding Collision Trample",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTrampleVolumeThreshold": "Gliding Trample Volume Threshold",
-  "text.autoconfig.farmland_tweaker.option.trampleTweaker.allowTramplingFarmlandUnderCrops": "Allow Trampling Farmland Under Crops",
+
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker": "Default Tweaker",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.minTrampleBPS": "Min Trample BPS",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.minTrampleBPS.@Tooltip[0]": "The minimum BPS (blocks per second) an entity must reach to have a chance to trample farmland.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.minTrampleBPS.@Tooltip[1]": "Higher values make trampling more difficult.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.trampleBPSRange": "Probability Range",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.trampleBPSRange.@Tooltip[0]": "Starting from the minimum trample BPS (blocks per second), how large a difference is required for the trampling chance to reach 100%.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.trampleBPSRange.@Tooltip[1]": "Larger values make the probability increase more slowly.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.trampleVolumeThreshold": "Trample Volume Threshold",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.defaultTweaker.allowTramplingFarmlandUnderCrops": "Allow Trampling Farmland Under Crops",
+
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker": "Glide Tweaker",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.minGlideTrampleBPS": "Min Glide Trample BPS",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.minGlideTrampleBPS.@Tooltip[0]": "The minimum BPS (blocks per second) an entity must reach to have a chance to trample farmland.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.minGlideTrampleBPS.@Tooltip[1]": "Higher values make trampling more difficult.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleBPSRange": "Probability Range",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleBPSRange.@Tooltip[0]": "Starting from the minimum trample BPS (blocks per second), how large a difference is required for the trampling chance to reach 100%.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleBPSRange.@Tooltip[1]": "Larger values make the probability increase more slowly.",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleVolumeThreshold": "Gliding Trample Volume Threshold",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.allowGlideTramplingFarmlandUnderCrops": "Allow Glide Trampling Farmland Under Crops",
+
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread": "Farmland Trample Spread",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.enableSpread": "Enable Spread",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.defaultSpreadRadius": "Default Spread Radius",
@@ -59,6 +72,8 @@
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.volumeScaling.volumeScaleMax.@Tooltip": "The maximum possible multiplier after volume mapping.",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadRangeMinY": "Spread Range Min Y",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.spreadRangeMaxY": "Spread Range Max Y",
+
+
 
   "text.autoconfig.farmland_tweaker.category.moistureTweaker": "moisture Tweaker",
   "text.autoconfig.farmland_tweaker.option.moistureTweaker.enableMoistureTweaker": "Enable Moisture Tweaker",

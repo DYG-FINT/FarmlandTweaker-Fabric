@@ -53,14 +53,18 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         if (!config.enableTrampleTweaker) return;
 
         if (entity instanceof EntityMixinAccess accessEntity) {
+            boolean isGlidingCollision = farmland_tweaker$isGlidingCollision(state);
+
+            double minTrampleBPS = isGlidingCollision ? config.glideTweaker.minGlideTrampleBPS : config.defaultTweaker.minTrampleBPS;
+            double trampleBPSRange = isGlidingCollision ? config.glideTweaker.glideTrampleBPSRange : config.defaultTweaker.trampleBPSRange;
+
             Vec3d v = accessEntity.farmland_tweaker$getLastVelocity();
             double speed = v.length();
             double bps = speed * 20;
 
-            float chanceValue = (float) ((bps - (float) config.minTrampleBPS) / (float) config.trampleBPSRange);
+            float chanceValue = (float) ((bps - minTrampleBPS) / trampleBPSRange);
             float entityVolume = entity.getWidth() * entity.getWidth() * entity.getHeight();
             boolean hasCrop = world.getBlockState(pos.up()).isIn(BlockTags.MAINTAINS_FARMLAND);
-            boolean isGlidingCollision = farmland_tweaker$isGlidingCollision(state);
 
             if (canTrampleFarmland(world, entity, config, chanceValue, entityVolume, hasCrop, isGlidingCollision)) {
                 FarmlandBlock.setToDirt(entity, state, world, pos);
@@ -92,11 +96,10 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         boolean passedTrampleChance = world.random.nextFloat() < chanceValue;
         boolean isLivingEntityRequirementMet = config.requireLivingEntityToTrample ? entity instanceof LivingEntity : true;
         boolean isTrampleAllowed = entity instanceof PlayerEntity ? config.allowPlayerTrample : config.allowMobTrample;
-        boolean isLargeEnoughToTrample  = entityVolume >= (isGlidingCollision ? (float) config.glideTrampleVolumeThreshold : (float) config.trampleVolumeThreshold);
-        boolean canTrampleCropFarmland = hasCrop ? config.allowTramplingFarmlandUnderCrops : true;
-        boolean glideTrampleCheck = isGlidingCollision ? config.allowGlidingCollisionTrample : true;
+        boolean isLargeEnoughToTrample  = entityVolume >= (isGlidingCollision ? (float) config.glideTweaker.glideTrampleVolumeThreshold : (float) config.defaultTweaker.trampleVolumeThreshold);
+        boolean canTrampleCropFarmland = !hasCrop || isGlidingCollision ? config.glideTweaker.allowGlideTramplingFarmlandUnderCrops : config.defaultTweaker.allowTramplingFarmlandUnderCrops;
 
-        return passedTrampleChance && isLivingEntityRequirementMet && isTrampleAllowed && isLargeEnoughToTrample && canTrampleCropFarmland && glideTrampleCheck;
+        return passedTrampleChance && isLivingEntityRequirementMet && isTrampleAllowed && isLargeEnoughToTrample && canTrampleCropFarmland;
     }
 
     @Unique

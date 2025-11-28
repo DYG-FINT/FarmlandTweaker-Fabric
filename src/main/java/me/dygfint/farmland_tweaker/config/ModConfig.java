@@ -46,20 +46,34 @@ public class ModConfig implements ConfigData {
 
     public static class TrampleTweaker {
         public boolean enableTrampleTweaker = true;
-        @ConfigEntry.Gui.Tooltip(count = 2)
-        public double minTrampleBPS = 3.10;
-        @ConfigEntry.Gui.Tooltip(count = 2)
-        public double trampleBPSRange = 7.53;
         public boolean requireLivingEntityToTrample = true;
         public boolean allowPlayerTrample = true;
         @ConfigEntry.Gui.Tooltip()
         public boolean allowMobTrample = true;
-        public double trampleVolumeThreshold = 0.512;
-        public boolean allowGlidingCollisionTrample = false;
-        public double glideTrampleVolumeThreshold = 0.216;
-        public boolean allowTramplingFarmlandUnderCrops = true;
+        @ConfigEntry.Gui.CollapsibleObject
+        public DefaultTweaker defaultTweaker = new DefaultTweaker();
+        @ConfigEntry.Gui.CollapsibleObject
+        public GlideTweaker glideTweaker = new GlideTweaker();
         @ConfigEntry.Gui.CollapsibleObject
         public FarmlandTrampleSpread farmlandTrampleSpread = new FarmlandTrampleSpread();
+
+        public static class DefaultTweaker {
+            @ConfigEntry.Gui.Tooltip(count = 2)
+            public double minTrampleBPS = 3.10;
+            @ConfigEntry.Gui.Tooltip(count = 2)
+            public double trampleBPSRange = 7.53;
+            public double trampleVolumeThreshold = 0.512;
+            public boolean allowTramplingFarmlandUnderCrops = true;
+        }
+
+        public static class GlideTweaker {
+            @ConfigEntry.Gui.Tooltip(count = 2)
+            public double minGlideTrampleBPS = 0.2052997014;
+            @ConfigEntry.Gui.Tooltip(count = 2)
+            public double glideTrampleBPSRange = -1.0;
+            public double glideTrampleVolumeThreshold = 0.216;
+            public boolean allowGlideTramplingFarmlandUnderCrops = true;
+        }
 
         public static class FarmlandTrampleSpread {
             public boolean enableSpread = false;
