@@ -4,8 +4,8 @@
   "package": "me.dygfint.farmland_tweaker.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EntityMixin",
     "IrrigationTweakerMixin",
-    "LivingEntityMixin",
     "MoistureTweakerMixin",
     "TrampleTweakerMixin"
   ],

@@ -1,5 +1,8 @@
 package me.dygfint.farmland_tweaker.access;
 
+import net.minecraft.block.BlockState;
+
 public interface TrampleTweakerMixinAccess {
-    void farmland_tweaker$setGlidingCollision(boolean glidingCollisionState);
+    boolean farmland_tweaker$isGlidingCollision(BlockState state);
+    BlockState farmland_tweaker$setGlidingCollision(BlockState state, boolean value);
 }

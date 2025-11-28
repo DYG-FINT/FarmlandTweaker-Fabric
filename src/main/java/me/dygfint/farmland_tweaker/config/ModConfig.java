@@ -47,9 +47,9 @@ public class ModConfig implements ConfigData {
     public static class TrampleTweaker {
         public boolean enableTrampleTweaker = true;
         @ConfigEntry.Gui.Tooltip(count = 2)
-        public double minTrampleFallHeight = 0.5;
+        public double minTrampleBPS = 3.10;
         @ConfigEntry.Gui.Tooltip(count = 2)
-        public double trampleFallRange = 1.0;
+        public double trampleBPSRange = 7.53;
         public boolean requireLivingEntityToTrample = true;
         public boolean allowPlayerTrample = true;
         @ConfigEntry.Gui.Tooltip()
@@ -75,17 +75,17 @@ public class ModConfig implements ConfigData {
 
             public static class DefaultSpreadRadius {
                 public int baseSpreadRadius = 2;
-                public double minSpreadFallDistance = 6.0;
+                public double minSpreadBPS = 11.70;
                 @ConfigEntry.Gui.Tooltip()
-                public double spreadFallRange = 32.0;
+                public double spreadBPSRange = 31.09;
                 public double volumeCorrectionDivisor = 0.648;
             }
 
             public static class GlideSpreadRadius {
                 public int glideBaseSpreadRadius = 4;
-                public double glideMinSpreadFallDistance = 6.0;
+                public double glideMinSpreadBPS = 16.88;
                 @ConfigEntry.Gui.Tooltip()
-                public double glideSpreadFallRange = 32.0;
+                public double glideSpreadBPSRange = 42.01;
                 public double glideVolumeCorrectionDivisor = 0.216;
             }
 
