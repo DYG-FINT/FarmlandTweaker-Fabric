@@ -1,5 +1,5 @@
 # 耕地调整 
-![Fabric](https://img.shields.io/badge/Fabric-1.21.2~1.21.8-orange) 
+![Fabric](https://img.shields.io/badge/Fabric-1.20~1.21.8-orange) 
 ![License](https://img.shields.io/badge/License-MIT-blue) 
 
 耕地调整是一个针对 Minecraft 耕地机制的增强与可调节模组。
@@ -21,10 +21,8 @@
 - 独立控制玩家、生物、非生物是否能踩坏耕地
 - 控制是否允许踩坏带作物的耕地 
 - 设置实体的最小体积判定阈值
+- 调整滑翔撞击时的行为
 - 可选的扩散破坏系统
 
 ### 湿度调整 
-- 防止有作物的干燥耕地变为泥土（原版行为，可改为“否”进行关闭） 
-
-### 生物调整 
-- 允许滑翔撞击破坏耕地
+- 防止有作物的干燥耕地变为泥土（原版行为，可改为“否”进行关闭）

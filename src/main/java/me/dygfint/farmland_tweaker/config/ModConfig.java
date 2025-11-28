@@ -67,10 +67,17 @@ public class ModConfig implements ConfigData {
         }
 
         public static class GlideTweaker {
+            //? if >=1.21.2 {
             @ConfigEntry.Gui.Tooltip(count = 2)
             public double minGlideTrampleBPS = 0.2052997014;
             @ConfigEntry.Gui.Tooltip(count = 2)
             public double glideTrampleBPSRange = -1.0;
+            //?} else {
+            /*@ConfigEntry.Gui.Tooltip(count = 2)
+            public double minGlideTrampleBPS = 3.10;
+            @ConfigEntry.Gui.Tooltip(count = 2)
+            public double glideTrampleBPSRange = 7.53;
+            *///?}
             public double glideTrampleVolumeThreshold = 0.216;
             public boolean allowGlideTramplingFarmlandUnderCrops = true;
         }

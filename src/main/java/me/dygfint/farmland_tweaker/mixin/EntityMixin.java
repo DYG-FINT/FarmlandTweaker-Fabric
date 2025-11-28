@@ -40,7 +40,11 @@ public class EntityMixin implements EntityMixinAccess {
         if (!lastOnGround && onGround && state.getBlock() instanceof TrampleTweakerMixinAccess farmlandBlock) {
             World world = self.getWorld();
 
+            //? if >= 1.21.2 {
             if (self instanceof LivingEntity living && living.isGliding()) {
+             //?} else {
+            /*if (self instanceof LivingEntity living && living.isFallFlying()) {
+            *///?}
                 state = farmlandBlock.farmland_tweaker$setGlidingCollision(state, true);
             }
 
