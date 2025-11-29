@@ -34,12 +34,23 @@ dependencies {
 }
 
 loom {
-    splitEnvironmentSourceSets()
-
     mods {
         create("farmland_tweaker") {
             sourceSet(sourceSets["main"])
-            sourceSet(sourceSets["client"])
+        }
+    }
+
+    runs {
+        named("client") {
+            client()
+            name("Minecraft Client")
+            source(sourceSets["main"])
+        }
+
+        named("server") {
+            server()
+            name("Minecraft Server")
+            source(sourceSets["main"])
         }
     }
 

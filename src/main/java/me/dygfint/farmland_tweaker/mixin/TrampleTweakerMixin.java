@@ -48,10 +48,10 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
     }
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
-    //? if >= 1.21.5 {
-    private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, double fallDistance, CallbackInfo ci) {
+    //?if >= 1.17 {
+    private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
     //?} else {
-    /*private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
+    /*private void farmland_tweaker$modifyLandedUpon(World world, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
     *///?}
         if (world.isClient()) return;
 
@@ -59,6 +59,10 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         if (!config.enableTrampleTweaker) return;
 
         if (entity instanceof EntityMixinAccess accessEntity) {
+            //? if <= 1.16.5 {
+            /*BlockState state = entity.world.getBlockState(pos);
+            *///?}
+
             boolean isGlidingCollision = farmland_tweaker$isGlidingCollision(state);
 
             double minTrampleBPS = isGlidingCollision ? config.glideTweaker.minGlideTrampleBPS : config.defaultTweaker.minTrampleBPS;
@@ -72,14 +76,16 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
             float entityVolume = entity.getWidth() * entity.getWidth() * entity.getHeight();
 
             if (canTrampleFarmland(world, pos, entity, config, chanceValue, entityVolume, isGlidingCollision)) {
-                //? if >=1.19.4 {
-                FarmlandBlock.setToDirt(entity, state, world, pos);
-                //?} else {
-                /*FarmlandBlock.setToDirt(state, world, pos);
-                *///?}
+                FarmlandBlock.setToDirt(state, world, pos);
                 trampleSpread(world, pos, entity, config, bps, entityVolume, isGlidingCollision);
             }
+
+            //? if >= 1.17 {
             super.onLandedUpon(world, state, pos, entity, fallDistance);
+             //?} else {
+            /*super.onLandedUpon(world, pos, entity, fallDistance);
+            *///?}
+
             ci.cancel();
         }
     }
@@ -110,11 +116,7 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
                         m.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
                         BlockState targetState = world.getBlockState(m);
                         if (targetState.getBlock() instanceof FarmlandBlock) {
-                            //? if >=1.19.4 {
-                            FarmlandBlock.setToDirt(entity, targetState, world, m);
-                            //?} else {
-                            /*FarmlandBlock.setToDirt(targetState, world, m);
-                            *///?}
+                            FarmlandBlock.setToDirt(targetState, world, m);
                         }
                     }
                 }

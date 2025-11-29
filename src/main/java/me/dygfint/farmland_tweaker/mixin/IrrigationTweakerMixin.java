@@ -3,8 +3,10 @@ package me.dygfint.farmland_tweaker.mixin;
 import me.dygfint.farmland_tweaker.config.ModConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FarmlandBlock;
+import net.minecraft.tag.FluidTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.WorldView;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,11 +33,7 @@ public class IrrigationTweakerMixin {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
 
-        //? if >=1.21 {
-        if (EXTRA_BLOCK_IDS.contains(Identifier.of("minecraft","farmland"))) {
-        //?} else {
-        /*if (EXTRA_BLOCK_IDS.contains(new Identifier("minecraft","farmland"))) {
-        *///?}
+        if (EXTRA_BLOCK_IDS.contains(new Identifier("minecraft","farmland"))) {
             cir.setReturnValue(true);
             return;
         }
@@ -47,13 +45,8 @@ public class IrrigationTweakerMixin {
                 for (int dz = -rangeXZ; dz <= rangeXZ; dz++) {
                     m.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
                     BlockState state = world.getBlockState(m);
-                    //? if >= 1.19.3 {
-                    Identifier id = net.minecraft.registry.Registries.BLOCK.getId(state.getBlock());
-                    if (world.getFluidState(m).isIn(net.minecraft.registry.tag.FluidTags.WATER) || EXTRA_BLOCK_IDS.contains(id)) {
-                    //?} else {
-                    /*Identifier id = net.minecraft.util.registry.Registry.BLOCK.getId(state.getBlock());
-                    if (world.getFluidState(m).isIn(net.minecraft.tag.FluidTags.WATER) || EXTRA_BLOCK_IDS.contains(id)) {
-                    *///?}
+                    Identifier id = Registry.BLOCK.getId(state.getBlock());
+                    if (world.getFluidState(m).isIn(FluidTags.WATER) || EXTRA_BLOCK_IDS.contains(id)) {
                         cir.setReturnValue(true);
                         return;
                     }

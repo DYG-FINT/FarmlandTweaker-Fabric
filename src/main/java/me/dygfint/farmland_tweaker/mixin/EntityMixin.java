@@ -9,7 +9,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,29 +37,25 @@ public class EntityMixin implements EntityMixinAccess {
         if (!config.enableTrampleTweaker) return;
 
         if (!lastOnGround && onGround && state.getBlock() instanceof TrampleTweakerMixinAccess farmlandBlock) {
-            World world = self.getWorld();
+            World world = self.world;
 
-            //? if >= 1.21.2 {
-            if (self instanceof LivingEntity living && living.isGliding()) {
-             //?} else {
-            /*if (self instanceof LivingEntity living && living.isFallFlying()) {
-            *///?}
+            if (self instanceof LivingEntity living && living.isFallFlying()) {
                 state = farmlandBlock.farmland_tweaker$setGlidingCollision(state, true);
             }
 
+            //? if >= 1.17 {
             state.getBlock().onLandedUpon(world, state, landedPosition, self, self.fallDistance);
-
-            //? if >= 1.20 {
-            world.emitGameEvent(GameEvent.HIT_GROUND, self.getPos(), GameEvent.Emitter.of(self, self.supportingBlockPos.map(world::getBlockState).orElse(state)));
-            //?} else if >= 1.19 {
-            /*world.emitGameEvent(GameEvent.HIT_GROUND, self.getPos(), GameEvent.Emitter.of(self, self.getSteppingBlockState()));
-            *///?} else {
-            /*if (!state.isIn(net.minecraft.tag.BlockTags.OCCLUDES_VIBRATION_SIGNALS)) self.emitGameEvent(GameEvent.HIT_GROUND);
+             //?} else {
+            /*state.getBlock().onLandedUpon(world, landedPosition, self, self.fallDistance);
             *///?}
+
+            //?if >= 1.17 {
+            if (!state.isIn(net.minecraft.tag.BlockTags.OCCLUDES_VIBRATION_SIGNALS)) self.emitGameEvent(net.minecraft.world.event.GameEvent.HIT_GROUND);
+            //?}
 
             farmlandBlock.farmland_tweaker$setGlidingCollision(state, true);
 
-            self.onLanding();
+            self.fallDistance = 0.0F;
             ci.cancel();
         }
     }
