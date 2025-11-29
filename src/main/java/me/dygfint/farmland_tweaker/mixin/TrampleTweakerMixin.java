@@ -9,7 +9,6 @@ import net.minecraft.block.FarmlandBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
@@ -74,23 +73,7 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
 
             if (canTrampleFarmland(world, pos, entity, config, chanceValue, entityVolume, isGlidingCollision)) {
                 FarmlandBlock.setToDirt(entity, state, world, pos);
-                if (config.farmlandTrampleSpread.enableSpread) {
-                    int radius = getRadius(config.farmlandTrampleSpread, bps, entityVolume, isGlidingCollision);
-                    BlockPos.Mutable m = new BlockPos.Mutable();
-                    for (int dy = config.farmlandTrampleSpread.spreadRangeMinY; dy <= config.farmlandTrampleSpread.spreadRangeMaxY; dy++) {
-                        for (int dx = -radius; dx <= radius; dx++) {
-                            for (int dz = -radius; dz <= radius; dz++) {
-                                if (dx * dx + dz * dz <= (radius + 0.5) * (radius + 0.5)) {
-                                    m.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
-                                    BlockState targetState = world.getBlockState(m);
-                                    if (targetState.getBlock() instanceof FarmlandBlock) {
-                                        FarmlandBlock.setToDirt(entity, targetState, world, m);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                trampleSpread(world, pos, entity, config, bps, entityVolume, isGlidingCollision);
             }
             super.onLandedUpon(world, state, pos, entity, fallDistance);
             ci.cancel();
@@ -106,6 +89,29 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         boolean canTrampleCropFarmland = !hasCrop(world, pos) || isGlidingCollision ? config.glideTweaker.allowGlideTramplingFarmlandUnderCrops : config.defaultTweaker.allowTramplingFarmlandUnderCrops;
 
         return passedTrampleChance && isLivingEntityRequirementMet && isTrampleAllowed && isLargeEnoughToTrample && canTrampleCropFarmland;
+    }
+
+    @Unique
+    private static void trampleSpread(World world, BlockPos pos, Entity entity, ModConfig.TrampleTweaker config, double bps, float entityVolume, boolean isGlidingCollision) {
+        if (!config.farmlandTrampleSpread.enableSpread) return;
+
+        int radius = getRadius(config.farmlandTrampleSpread, bps, entityVolume, isGlidingCollision);
+
+        BlockPos.Mutable m = new BlockPos.Mutable();
+
+        for (int dy = config.farmlandTrampleSpread.spreadRangeMinY; dy <= config.farmlandTrampleSpread.spreadRangeMaxY; dy++) {
+            for (int dx = -radius; dx <= radius; dx++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    if (dx * dx + dz * dz <= (radius + 0.5) * (radius + 0.5)) {
+                        m.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
+                        BlockState targetState = world.getBlockState(m);
+                        if (targetState.getBlock() instanceof FarmlandBlock) {
+                            FarmlandBlock.setToDirt(entity, targetState, world, m);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Unique
