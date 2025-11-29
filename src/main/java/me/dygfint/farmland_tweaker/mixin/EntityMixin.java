@@ -50,11 +50,13 @@ public class EntityMixin implements EntityMixinAccess {
 
             state.getBlock().onLandedUpon(world, state, landedPosition, self, self.fallDistance);
 
-            world.emitGameEvent(
-                    GameEvent.HIT_GROUND,
-                    self.getPos(),
-                    GameEvent.Emitter.of(self, self.supportingBlockPos.map(world::getBlockState).orElse(state))
-            );
+            //? if >= 1.20 {
+            world.emitGameEvent(GameEvent.HIT_GROUND, self.getPos(), GameEvent.Emitter.of(self, self.supportingBlockPos.map(world::getBlockState).orElse(state)));
+            //?} else if >= 1.19 {
+            /*world.emitGameEvent(GameEvent.HIT_GROUND, self.getPos(), GameEvent.Emitter.of(self, self.getSteppingBlockState()));
+            *///?} else {
+            /*if (!state.isIn(net.minecraft.tag.BlockTags.OCCLUDES_VIBRATION_SIGNALS)) self.emitGameEvent(GameEvent.HIT_GROUND);
+            *///?}
 
             farmlandBlock.farmland_tweaker$setGlidingCollision(state, true);
 

@@ -72,7 +72,11 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
             float entityVolume = entity.getWidth() * entity.getWidth() * entity.getHeight();
 
             if (canTrampleFarmland(world, pos, entity, config, chanceValue, entityVolume, isGlidingCollision)) {
+                //? if >=1.19.4 {
                 FarmlandBlock.setToDirt(entity, state, world, pos);
+                //?} else {
+                /*FarmlandBlock.setToDirt(state, world, pos);
+                *///?}
                 trampleSpread(world, pos, entity, config, bps, entityVolume, isGlidingCollision);
             }
             super.onLandedUpon(world, state, pos, entity, fallDistance);
@@ -106,7 +110,11 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
                         m.set(pos.getX() + dx, pos.getY() + dy, pos.getZ() + dz);
                         BlockState targetState = world.getBlockState(m);
                         if (targetState.getBlock() instanceof FarmlandBlock) {
+                            //? if >=1.19.4 {
                             FarmlandBlock.setToDirt(entity, targetState, world, m);
+                            //?} else {
+                            /*FarmlandBlock.setToDirt(targetState, world, m);
+                            *///?}
                         }
                     }
                 }
