@@ -38,7 +38,11 @@ public class EntityMixin implements EntityMixinAccess {
         if (!config.enableTrampleTweaker) return;
 
         if (!lastOnGround && onGround && state.getBlock() instanceof TrampleTweakerMixinAccess farmlandBlock) {
+            //? if >= 1.21.9 {
+            /*World world = self.getEntityWorld();
+             *///?} else {
             World world = self.getWorld();
+            //?}
 
             //? if >= 1.21.2 {
             if (self instanceof LivingEntity living && living.isGliding()) {
@@ -50,7 +54,9 @@ public class EntityMixin implements EntityMixinAccess {
 
             state.getBlock().onLandedUpon(world, state, landedPosition, self, self.fallDistance);
 
-            //? if >= 1.20 {
+            //? if >= 1.21.9 {
+            /*world.emitGameEvent(GameEvent.HIT_GROUND, self.getEntityPos(), GameEvent.Emitter.of(self, self.supportingBlockPos.map(world::getBlockState).orElse(state)));
+            *///?} else if >= 1.20 {
             world.emitGameEvent(GameEvent.HIT_GROUND, self.getPos(), GameEvent.Emitter.of(self, self.supportingBlockPos.map(world::getBlockState).orElse(state)));
             //?} else if >= 1.19 {
             /*world.emitGameEvent(GameEvent.HIT_GROUND, self.getPos(), GameEvent.Emitter.of(self, self.getSteppingBlockState()));
