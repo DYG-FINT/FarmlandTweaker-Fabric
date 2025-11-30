@@ -39,6 +39,10 @@
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleVolumeThreshold": "滑翔中的实体能踩坏耕地所需的最小体积",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.allowGlideTramplingFarmlandUnderCrops": "是否允许滑翔踩坏有作物的耕地",
 
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.forceTrampleOnGround": "在没有离地的情况下仍然触发踩踏",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.forceTrampleOnGround.enableForceTrampleOnGround": "启用",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.forceTrampleOnGround.minGroundTrampleVolume": "直接触发踩踏所需的最小体积",
+
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread": "踩坏或撞击破坏耕地时触发额外扩散破坏",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.enableSpread": "启用扩散",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.defaultSpreadRadius": "默认扩散半径",

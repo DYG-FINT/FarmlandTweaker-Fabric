@@ -39,6 +39,10 @@
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.glideTrampleVolumeThreshold": "Gliding Trample Volume Threshold",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.glideTweaker.allowGlideTramplingFarmlandUnderCrops": "Allow Glide Trampling Farmland Under Crops",
 
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.forceTrampleOnGround": "Force Trample On Ground",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.forceTrampleOnGround.enableForceTrampleOnGround": "Enable",
+  "text.autoconfig.farmland_tweaker.option.trampleTweaker.forceTrampleOnGround.minGroundTrampleVolume": "Min Ground Trample Volume",
+
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread": "Farmland Trample Spread",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.enableSpread": "Enable Spread",
   "text.autoconfig.farmland_tweaker.option.trampleTweaker.farmlandTrampleSpread.defaultSpreadRadius": "Default Spread Radius",

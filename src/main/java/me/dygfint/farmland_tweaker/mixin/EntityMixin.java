@@ -36,7 +36,12 @@ public class EntityMixin implements EntityMixinAccess {
         ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
         if (!config.enableTrampleTweaker) return;
 
-        if (!lastOnGround && onGround && state.getBlock() instanceof TrampleTweakerMixinAccess farmlandBlock) {
+        boolean normalTrample = !lastOnGround;
+        boolean forceGroundTrample = config.forceTrampleOnGround.enableForceTrampleOnGround
+                && (self.getWidth() * self.getWidth() * self.getHeight()) >= config.forceTrampleOnGround.minGroundTrampleVolume;
+
+        if ((normalTrample || forceGroundTrample) && onGround
+                && state.getBlock() instanceof TrampleTweakerMixinAccess farmlandBlock) {
             World world = self.world;
 
             if (self instanceof LivingEntity living && living.isFallFlying()) {
@@ -45,9 +50,9 @@ public class EntityMixin implements EntityMixinAccess {
 
             //? if >= 1.17 {
             state.getBlock().onLandedUpon(world, state, landedPosition, self, self.fallDistance);
-             //?} else {
+            //?} else {
             /*state.getBlock().onLandedUpon(world, landedPosition, self, self.fallDistance);
-            *///?}
+             *///?}
 
             //?if >= 1.17 {
             if (!state.isIn(net.minecraft.tag.BlockTags.OCCLUDES_VIBRATION_SIGNALS)) self.emitGameEvent(net.minecraft.world.event.GameEvent.HIT_GROUND);

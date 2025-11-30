@@ -55,6 +55,8 @@ public class ModConfig implements ConfigData {
         @ConfigEntry.Gui.CollapsibleObject
         public GlideTweaker glideTweaker = new GlideTweaker();
         @ConfigEntry.Gui.CollapsibleObject
+        public ForceTrampleOnGround forceTrampleOnGround = new ForceTrampleOnGround();
+        @ConfigEntry.Gui.CollapsibleObject
         public FarmlandTrampleSpread farmlandTrampleSpread = new FarmlandTrampleSpread();
 
         public static class DefaultTweaker {
@@ -73,6 +75,11 @@ public class ModConfig implements ConfigData {
             public double glideTrampleBPSRange = 7.53;
             public double glideTrampleVolumeThreshold = 0.216;
             public boolean allowGlideTramplingFarmlandUnderCrops = true;
+        }
+
+        public static class ForceTrampleOnGround {
+            public boolean enableForceTrampleOnGround = false;
+            public double minGroundTrampleVolume = 0.648;
         }
 
         public static class FarmlandTrampleSpread {
