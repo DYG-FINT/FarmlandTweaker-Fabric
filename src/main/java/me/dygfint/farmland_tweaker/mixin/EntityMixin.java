@@ -1,11 +1,10 @@
 package me.dygfint.farmland_tweaker.mixin;
 
 import me.dygfint.farmland_tweaker.access.EntityMixinAccess;
-import me.dygfint.farmland_tweaker.access.TrampleTweakerMixinAccess;
 import me.dygfint.farmland_tweaker.config.ModConfig;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.FarmlandBlock;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -33,6 +32,7 @@ public class EntityMixin implements EntityMixinAccess {
     @Inject(method = "fall", at = @At(value = "HEAD"), cancellable = true)
     private void farmland_tweaker$onGlidingLand(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition, CallbackInfo ci) {
         Entity self = (Entity)(Object)this;
+        if (!(state.getBlock() instanceof FarmlandBlock)) return;
 
         ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
         if (!config.enableTrampleTweaker) return;
@@ -41,21 +41,12 @@ public class EntityMixin implements EntityMixinAccess {
         boolean forceGroundTrample = config.forceTrampleOnGround.enableForceTrampleOnGround
                 && (self.getWidth() * self.getWidth() * self.getHeight()) >= config.forceTrampleOnGround.minGroundTrampleVolume;
 
-        if ((normalTrample || forceGroundTrample) && onGround
-                && state.getBlock() instanceof TrampleTweakerMixinAccess farmlandBlock) {
+        if ((normalTrample || forceGroundTrample) && onGround) {
             //? if >= 1.21.9 {
             /*World world = self.getEntityWorld();
              *///?} else {
             World world = self.getWorld();
             //?}
-
-            //? if >= 1.21.2 {
-            if (self instanceof LivingEntity living && living.isGliding()) {
-             //?} else {
-            /*if (self instanceof LivingEntity living && living.isFallFlying()) {
-            *///?}
-                state = farmlandBlock.farmland_tweaker$setGlidingCollision(state, true);
-            }
 
             state.getBlock().onLandedUpon(world, state, landedPosition, self, self.fallDistance);
 
@@ -68,8 +59,6 @@ public class EntityMixin implements EntityMixinAccess {
             *///?} else {
             /*if (!state.isIn(net.minecraft.tag.BlockTags.OCCLUDES_VIBRATION_SIGNALS)) self.emitGameEvent(GameEvent.HIT_GROUND);
             *///?}
-
-            farmlandBlock.farmland_tweaker$setGlidingCollision(state, true);
 
             self.onLanding();
             ci.cancel();

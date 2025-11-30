@@ -1,7 +1,6 @@
 package me.dygfint.farmland_tweaker.mixin;
 
 import me.dygfint.farmland_tweaker.access.EntityMixinAccess;
-import me.dygfint.farmland_tweaker.access.TrampleTweakerMixinAccess;
 import me.dygfint.farmland_tweaker.config.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -9,8 +8,6 @@ import net.minecraft.block.FarmlandBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -24,10 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FarmlandBlock.class)
-public abstract class TrampleTweakerMixin extends Block implements TrampleTweakerMixinAccess {
-    @Unique
-    private static final BooleanProperty IS_GLIDING_COLLISION = BooleanProperty.of("is_gliding_collision");
-
+public abstract class TrampleTweakerMixin extends Block {
     @Shadow
     private static boolean hasCrop(BlockView world, BlockPos pos) {
         throw new AssertionError();
@@ -35,16 +29,6 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
 
     public TrampleTweakerMixin(Settings settings) {
         super(settings);
-    }
-
-    @Inject(method = "appendProperties", at = @At("RETURN"))
-    private void farmland_tweaker$appendProperties(StateManager.Builder<Block, BlockState> builder, CallbackInfo ci) {
-        builder.add(IS_GLIDING_COLLISION);
-    }
-
-    @Inject(method = "<init>", at = @At("TAIL"))
-    private void farmland_tweaker$onInit(Settings settings, CallbackInfo ci) {
-        this.setDefaultState(this.getDefaultState().with(IS_GLIDING_COLLISION, false));
     }
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
@@ -59,7 +43,11 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         if (!config.enableTrampleTweaker) return;
 
         if (entity instanceof EntityMixinAccess accessEntity) {
-            boolean isGlidingCollision = farmland_tweaker$isGlidingCollision(state);
+            //? if >= 1.21.2 {
+            boolean isGlidingCollision = entity instanceof LivingEntity living && living.isGliding();
+            //?} else {
+            /*boolean isGlidingCollision = entity instanceof LivingEntity living && living.isFallFlying();
+            *///?}
 
             double minTrampleBPS = isGlidingCollision ? config.glideTweaker.minGlideTrampleBPS : config.defaultTweaker.minTrampleBPS;
             double trampleBPSRange = isGlidingCollision ? config.glideTweaker.glideTrampleBPSRange : config.defaultTweaker.trampleBPSRange;
@@ -90,7 +78,7 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         boolean isLivingEntityRequirementMet = config.requireLivingEntityToTrample ? entity instanceof LivingEntity : true;
         boolean isTrampleAllowed = entity instanceof PlayerEntity ? config.allowPlayerTrample : config.allowMobTrample;
         boolean isLargeEnoughToTrample  = entityVolume >= (isGlidingCollision ? (float) config.glideTweaker.glideTrampleVolumeThreshold : (float) config.defaultTweaker.trampleVolumeThreshold);
-        boolean canTrampleCropFarmland = !hasCrop(world, pos) || isGlidingCollision ? config.glideTweaker.allowGlideTramplingFarmlandUnderCrops : config.defaultTweaker.allowTramplingFarmlandUnderCrops;
+        boolean canTrampleCropFarmland = !hasCrop(world, pos) || (isGlidingCollision ? config.glideTweaker.allowGlideTramplingFarmlandUnderCrops : config.defaultTweaker.allowTramplingFarmlandUnderCrops);
 
         return passedTrampleChance && isLivingEntityRequirementMet && isTrampleAllowed && isLargeEnoughToTrample && canTrampleCropFarmland;
     }
@@ -161,16 +149,6 @@ public abstract class TrampleTweakerMixin extends Block implements TrampleTweake
         }
 
         return volumeFactor;
-    }
-
-    @Override
-    public boolean farmland_tweaker$isGlidingCollision(BlockState state) {
-        return state.get(IS_GLIDING_COLLISION);
-    }
-
-    @Override
-    public BlockState farmland_tweaker$setGlidingCollision(BlockState state, boolean value) {
-        return state.with(IS_GLIDING_COLLISION, value);
     }
 }
 
