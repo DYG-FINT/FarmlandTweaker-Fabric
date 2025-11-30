@@ -5,7 +5,7 @@
   "name": "Farmland Tweaker",
   "description": "",
   "authors": ["DYG_FINT"],
-  "contact": {},
+  "contact": {"sources":"https://github.com/DYG-FINT/FarmlandTweaker-Fabric"},
   "license": "MIT",
   "icon": "assets/farmland_tweaker/icon.png",
   "environment": "*",

@@ -37,7 +37,12 @@ public class EntityMixin implements EntityMixinAccess {
         ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
         if (!config.enableTrampleTweaker) return;
 
-        if (!lastOnGround && onGround && state.getBlock() instanceof TrampleTweakerMixinAccess farmlandBlock) {
+        boolean normalTrample = !lastOnGround;
+        boolean forceGroundTrample = config.forceTrampleOnGround.enableForceTrampleOnGround
+                && (self.getWidth() * self.getWidth() * self.getHeight()) >= config.forceTrampleOnGround.minGroundTrampleVolume;
+
+        if ((normalTrample || forceGroundTrample) && onGround
+                && state.getBlock() instanceof TrampleTweakerMixinAccess farmlandBlock) {
             //? if >= 1.21.9 {
             /*World world = self.getEntityWorld();
              *///?} else {
