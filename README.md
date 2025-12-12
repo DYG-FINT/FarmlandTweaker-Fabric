@@ -1,5 +1,5 @@
 # 耕地调整 
-![Fabric](https://img.shields.io/badge/Fabric-1.16.5~1.21.10-orange) 
+![Fabric](https://img.shields.io/badge/Fabric-1.16.5~1.21.11-orange) 
 ![License](https://img.shields.io/badge/License-MIT-blue) 
 
 耕地调整是一个针对 Minecraft 耕地机制的增强与可调节模组。
