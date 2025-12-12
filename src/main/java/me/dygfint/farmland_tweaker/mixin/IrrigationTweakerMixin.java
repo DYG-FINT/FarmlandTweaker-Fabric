@@ -34,8 +34,7 @@ public class IrrigationTweakerMixin {
         //? if >=1.21 {
         if (EXTRA_BLOCK_IDS.contains(Identifier.of("minecraft","farmland"))) {
         //?} else {
-        /*if (EXTRA_BLOCK_IDS.contains(new Identifier("minecraft","farmland"))) {
-        *///?}
+        /*if (EXTRA_BLOCK_IDS.contains(new Identifier("minecraft","farmland"))) { *///?}
             cir.setReturnValue(true);
             return;
         }
@@ -52,8 +51,7 @@ public class IrrigationTweakerMixin {
                     if (world.getFluidState(m).isIn(net.minecraft.registry.tag.FluidTags.WATER) || EXTRA_BLOCK_IDS.contains(id)) {
                     //?} else {
                     /*Identifier id = net.minecraft.util.registry.Registry.BLOCK.getId(state.getBlock());
-                    if (world.getFluidState(m).isIn(net.minecraft.tag.FluidTags.WATER) || EXTRA_BLOCK_IDS.contains(id)) {
-                    *///?}
+                    if (world.getFluidState(m).isIn(net.minecraft.tag.FluidTags.WATER) || EXTRA_BLOCK_IDS.contains(id)) { *///?}
                         cir.setReturnValue(true);
                         return;
                     }

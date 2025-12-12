@@ -45,8 +45,7 @@ public class EntityMixin implements EntityMixinAccess {
             //? if >= 1.21.9 {
             /*World world = self.getEntityWorld();
              *///?} else {
-            World world = self.getWorld();
-            //?}
+            World world = self.getWorld(); //?}
 
             state.getBlock().onLandedUpon(world, state, landedPosition, self, self.fallDistance);
 
@@ -57,8 +56,7 @@ public class EntityMixin implements EntityMixinAccess {
             //?} else if >= 1.19 {
             /*world.emitGameEvent(GameEvent.HIT_GROUND, self.getPos(), GameEvent.Emitter.of(self, self.getSteppingBlockState()));
             *///?} else {
-            /*if (!state.isIn(net.minecraft.tag.BlockTags.OCCLUDES_VIBRATION_SIGNALS)) self.emitGameEvent(GameEvent.HIT_GROUND);
-            *///?}
+            /*if (!state.isIn(net.minecraft.tag.BlockTags.OCCLUDES_VIBRATION_SIGNALS)) self.emitGameEvent(GameEvent.HIT_GROUND); *///?}
 
             self.onLanding();
             ci.cancel();

@@ -78,8 +78,7 @@ public class ModConfig implements ConfigData {
             /*@ConfigEntry.Gui.Tooltip(count = 2)
             public double minGlideTrampleBPS = 3.10;
             @ConfigEntry.Gui.Tooltip(count = 2)
-            public double glideTrampleBPSRange = 7.53;
-            *///?}
+            public double glideTrampleBPSRange = 7.53; *///?}
             public double glideTrampleVolumeThreshold = 0.216;
             public boolean allowGlideTramplingFarmlandUnderCrops = true;
         }

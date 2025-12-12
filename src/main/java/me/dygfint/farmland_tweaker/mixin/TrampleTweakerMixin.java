@@ -35,8 +35,7 @@ public abstract class TrampleTweakerMixin extends Block {
     //? if >= 1.21.5 {
     private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, double fallDistance, CallbackInfo ci) {
     //?} else {
-    /*private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
-    *///?}
+    /*private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) { *///?}
         if (world.isClient()) return;
 
         ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
@@ -46,8 +45,7 @@ public abstract class TrampleTweakerMixin extends Block {
             //? if >= 1.21.2 {
             boolean isGlidingCollision = entity instanceof LivingEntity living && living.isGliding();
             //?} else {
-            /*boolean isGlidingCollision = entity instanceof LivingEntity living && living.isFallFlying();
-            *///?}
+            /*boolean isGlidingCollision = entity instanceof LivingEntity living && living.isFallFlying(); *///?}
 
             double minTrampleBPS = isGlidingCollision ? config.glideTweaker.minGlideTrampleBPS : config.defaultTweaker.minTrampleBPS;
             double trampleBPSRange = isGlidingCollision ? config.glideTweaker.glideTrampleBPSRange : config.defaultTweaker.trampleBPSRange;
@@ -63,8 +61,7 @@ public abstract class TrampleTweakerMixin extends Block {
                 //? if >=1.19.4 {
                 FarmlandBlock.setToDirt(entity, state, world, pos);
                 //?} else {
-                /*FarmlandBlock.setToDirt(state, world, pos);
-                *///?}
+                /*FarmlandBlock.setToDirt(state, world, pos); *///?}
                 trampleSpread(world, pos, entity, config, bps, entityVolume, isGlidingCollision);
             }
             super.onLandedUpon(world, state, pos, entity, fallDistance);
@@ -101,8 +98,7 @@ public abstract class TrampleTweakerMixin extends Block {
                             //? if >=1.19.4 {
                             FarmlandBlock.setToDirt(entity, targetState, world, m);
                             //?} else {
-                            /*FarmlandBlock.setToDirt(targetState, world, m);
-                            *///?}
+                            /*FarmlandBlock.setToDirt(targetState, world, m); *///?}
                         }
                     }
                 }
