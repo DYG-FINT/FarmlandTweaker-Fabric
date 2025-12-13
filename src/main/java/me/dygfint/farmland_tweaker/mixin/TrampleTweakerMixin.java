@@ -32,11 +32,10 @@ public abstract class TrampleTweakerMixin extends Block {
     }
 
     @Inject(method = "onLandedUpon", at = @At("HEAD"), cancellable = true)
-            //?if >= 1.17 {
+    //?if >= 1.17 {
     private void farmland_tweaker$modifyLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
-        //?} else {
-        /*private void farmland_tweaker$modifyLandedUpon(World world, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) {
-         *///?}
+    //?} else {
+    /*private void farmland_tweaker$modifyLandedUpon(World world, BlockPos pos, Entity entity, float fallDistance, CallbackInfo ci) { *///?}
         if (world.isClient()) return;
 
         ModConfig.TrampleTweaker config = ModConfig.get().trampleTweaker;
@@ -44,8 +43,7 @@ public abstract class TrampleTweakerMixin extends Block {
 
         if (entity instanceof EntityMixinAccess accessEntity) {
             //? if <= 1.16.5 {
-            /*BlockState state = entity.world.getBlockState(pos);
-             *///?}
+            /*BlockState state = entity.world.getBlockState(pos); *///?}
 
             boolean isGlidingCollision = entity instanceof LivingEntity living && living.isFallFlying();
 
@@ -67,8 +65,7 @@ public abstract class TrampleTweakerMixin extends Block {
             //? if >= 1.17 {
             super.onLandedUpon(world, state, pos, entity, fallDistance);
             //?} else {
-            /*super.onLandedUpon(world, pos, entity, fallDistance);
-             *///?}
+            /*super.onLandedUpon(world, pos, entity, fallDistance); *///?}
 
             ci.cancel();
         }

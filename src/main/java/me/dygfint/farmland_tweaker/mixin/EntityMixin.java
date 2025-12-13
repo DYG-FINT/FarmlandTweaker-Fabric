@@ -46,12 +46,10 @@ public class EntityMixin implements EntityMixinAccess {
             //? if >= 1.17 {
             state.getBlock().onLandedUpon(world, state, landedPosition, self, self.fallDistance);
             //?} else {
-            /*state.getBlock().onLandedUpon(world, landedPosition, self, self.fallDistance);
-             *///?}
+            /*state.getBlock().onLandedUpon(world, landedPosition, self, self.fallDistance); *///?}
 
             //?if >= 1.17 {
-            if (!state.isIn(net.minecraft.tag.BlockTags.OCCLUDES_VIBRATION_SIGNALS)) self.emitGameEvent(net.minecraft.world.event.GameEvent.HIT_GROUND);
-            //?}
+            if (!state.isIn(net.minecraft.tag.BlockTags.OCCLUDES_VIBRATION_SIGNALS)) self.emitGameEvent(net.minecraft.world.event.GameEvent.HIT_GROUND); //?}
 
             self.fallDistance = 0.0F;
             ci.cancel();
